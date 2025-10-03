@@ -41,165 +41,11 @@
   const DEMO_YEAR = 2025;
   const STATIC_AES_KEY = 'KadaDemoKey-2025';
   const SITES = ['Lambanyi', 'Madina', 'Atelier', 'Stock central'];
-  const ROLES = ['Manager', 'Staff'];
-  const STAFF_ROLES = ['Commercial', 'Technicien'];
-  const LANGUAGES = ['fr', 'en'];
-  const I18N = {
-    fr: {
-      'nav.dashboard': 'Dashboard',
-      'nav.clients': 'Clients',
-      'nav.devices': 'Appareils',
-      'nav.suppliers': 'Fournisseurs',
-      'nav.catalog': 'Articles & Services',
-      'nav.stock': 'Stock & Mouvements',
-      'nav.purchases': 'Achats',
-      'nav.sales': 'Ventes',
-      'nav.workorders': 'Réparations',
-      'nav.creances': 'Créances',
-      'nav.settings': 'Paramètres',
-      'header.site': 'Boutique',
-      'header.role': 'Rôle',
-      'header.subrole': 'Profil staff',
-      'header.language': 'Langue',
-      'title.dashboard': 'Dashboard',
-      'title.clients': 'Clients',
-      'title.devices': 'Appareils',
-      'title.suppliers': 'Fournisseurs',
-      'title.catalog': 'Articles & Services',
-      'title.stock': 'Stock & Mouvements',
-      'title.purchases': 'Achats',
-      'title.sales': 'Ventes',
-      'title.workorders': 'Réparations',
-      'title.creances': 'Créances',
-      'title.settings': 'Paramètres',
-      'subtitle.dashboard': 'Vue synthétique des opérations',
-      'subtitle.clients': 'Gestion des clients & appareils',
-      'subtitle.devices': 'Suivi des appareils confiés',
-      'subtitle.suppliers': 'Achats & dettes fournisseurs',
-      'subtitle.catalog': 'Catalogue produits et services',
-      'subtitle.stock': 'Multi-sites & transferts',
-      'subtitle.purchases': 'Factures fournisseurs',
-      'subtitle.sales': 'Point de vente & factures clients',
-      'subtitle.workorders': 'Workflow complet des bons de réparation',
-      'subtitle.creances': 'Suivi des soldes clients & fournisseurs',
-      'subtitle.settings': 'Export / import / diagnostics',
-      'lang.fr': 'Français',
-      'lang.en': 'Anglais',
-      'role.manager': 'Manager',
-      'role.staff': 'Staff',
-      'role.staff.commercial': 'Commercial',
-      'role.staff.technicien': 'Technicien',
-      'creances.tab.clients': 'Créances clients',
-      'creances.tab.suppliers': 'Dettes fournisseurs',
-      'creances.filter.site': 'Boutique',
-      'creances.status.all': 'Toutes',
-      'creances.status.closed': 'Soldées',
-      'creances.status.partial': 'Partielles',
-      'creances.status.late': 'En retard',
-      'creances.status.soon10': 'Échéance ≤ 10 j',
-      'creances.summary.clients': 'créance(s) client',
-      'creances.summary.suppliers': 'dette(s) fournisseur',
-      'creances.summary.total': 'Total restant',
-      'creances.table.libelle': 'Libellé',
-      'creances.table.site': 'Site',
-      'creances.table.montant': 'Montant',
-      'creances.table.reste': 'Reste',
-      'creances.table.echeance': 'Échéance',
-      'creances.table.statut': 'Statut',
-      'creances.table.actions': 'Actions',
-      'creances.badge.open': 'Ouverte',
-      'creances.badge.closed': 'Soldée',
-      'creances.badge.partial': 'Partielle',
-      'creances.badge.late': 'En retard',
-      'creances.badge.soon': 'Échéance proche',
-      'creances.empty': 'Aucune créance sur ce filtre.',
-      'creances.action.pay': 'Régler'
-    },
-    en: {
-      'nav.dashboard': 'Dashboard',
-      'nav.clients': 'Customers',
-      'nav.devices': 'Devices',
-      'nav.suppliers': 'Suppliers',
-      'nav.catalog': 'Catalog',
-      'nav.stock': 'Stock & Movements',
-      'nav.purchases': 'Purchases',
-      'nav.sales': 'Sales',
-      'nav.workorders': 'Repairs',
-      'nav.creances': 'Receivables',
-      'nav.settings': 'Settings',
-      'header.site': 'Store',
-      'header.role': 'Role',
-      'header.subrole': 'Staff profile',
-      'header.language': 'Language',
-      'title.dashboard': 'Dashboard',
-      'title.clients': 'Customers',
-      'title.devices': 'Devices',
-      'title.suppliers': 'Suppliers',
-      'title.catalog': 'Catalog',
-      'title.stock': 'Stock & Movements',
-      'title.purchases': 'Purchases',
-      'title.sales': 'Sales',
-      'title.workorders': 'Repairs',
-      'title.creances': 'Receivables',
-      'title.settings': 'Settings',
-      'subtitle.dashboard': 'Synthetic view of operations',
-      'subtitle.clients': 'Manage customers & devices',
-      'subtitle.devices': 'Track entrusted devices',
-      'subtitle.suppliers': 'Supplier invoices & payables',
-      'subtitle.catalog': 'Products and services catalog',
-      'subtitle.stock': 'Multi-site stock & transfers',
-      'subtitle.purchases': 'Supplier bills',
-      'subtitle.sales': 'POS & customer invoices',
-      'subtitle.workorders': 'Complete repair workflow',
-      'subtitle.creances': 'Track customer & supplier balances',
-      'subtitle.settings': 'Export / import / diagnostics',
-      'lang.fr': 'French',
-      'lang.en': 'English',
-      'role.manager': 'Manager',
-      'role.staff': 'Staff',
-      'role.staff.commercial': 'Sales clerk',
-      'role.staff.technicien': 'Technician',
-      'creances.tab.clients': 'Customer receivables',
-      'creances.tab.suppliers': 'Supplier payables',
-      'creances.filter.site': 'Store',
-      'creances.status.all': 'All',
-      'creances.status.closed': 'Settled',
-      'creances.status.partial': 'Partial',
-      'creances.status.late': 'Overdue',
-      'creances.status.soon10': 'Due ≤ 10 days',
-      'creances.summary.clients': 'customer balance(s)',
-      'creances.summary.suppliers': 'supplier payable(s)',
-      'creances.summary.total': 'Outstanding total',
-      'creances.table.libelle': 'Label',
-      'creances.table.site': 'Site',
-      'creances.table.montant': 'Amount',
-      'creances.table.reste': 'Remaining',
-      'creances.table.echeance': 'Due date',
-      'creances.table.statut': 'Status',
-      'creances.table.actions': 'Actions',
-      'creances.badge.open': 'Open',
-      'creances.badge.closed': 'Settled',
-      'creances.badge.partial': 'Partial',
-      'creances.badge.late': 'Overdue',
-      'creances.badge.soon': 'Due soon',
-      'creances.empty': 'No balances for this filter.',
-      'creances.action.pay': 'Record payment'
-    }
-  };
-  const SYMPTOM_PRESETS = [
-    { value: 'ecran_fissure', label: 'Écran fissuré / Cracked screen' },
-    { value: 'charge_hs', label: 'Charge HS / Charging issue' },
-    { value: 'haut_parleur', label: 'Haut-parleur faible / Speaker low' },
-    { value: 'micro_hs', label: 'Micro HS / Microphone issue' },
-    { value: 'face_id', label: 'Face ID / Biométrie inopérante' },
-    { value: 'batterie_faible', label: 'Autonomie faible / Battery low' }
-  ];
+  const ROLES = ['Manager', 'Commercial', 'Technicien'];
 
   const seedData = {
     version: '1.0.0',
     role: 'Manager',
-    staffRole: 'Commercial',
-    language: 'fr',
     currentSite: 'Lambanyi',
     clients: [],
     devices: [],
@@ -349,39 +195,6 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
     },
 
-    t(key) {
-      const lang = this.data?.language || 'fr';
-      return (I18N[lang] && I18N[lang][key]) || (I18N['fr'] && I18N['fr'][key]) || key;
-    },
-
-    isManager() {
-      return this.data.role === 'Manager';
-    },
-
-    getStaffRole() {
-      if (this.isManager()) return 'Manager';
-      if (!this.data.staffRole) this.data.staffRole = STAFF_ROLES[0];
-      return this.data.staffRole;
-    },
-
-    canCommercialActions() {
-      return this.isManager() || this.getStaffRole() === 'Commercial';
-    },
-
-    canTechnicianActions() {
-      return this.isManager() || this.getStaffRole() === 'Technicien';
-    },
-
-    toggleStaffSelector() {
-      const wrapper = document.getElementById('staff-role-wrapper');
-      if (!wrapper) return;
-      if (this.data.role === 'Staff') {
-        wrapper.classList.remove('hidden');
-      } else {
-        wrapper.classList.add('hidden');
-      }
-    },
-
     renderShell() {
       const container = document.getElementById('app');
       container.innerHTML = `
@@ -400,27 +213,17 @@
           <main class="flex-1 flex flex-col">
             <header class="h-20 border-b border-slate-800 px-8 flex items-center justify-between bg-slate-950/70 backdrop-blur">
               <div>
-                <h1 class="text-xl font-semibold" id="view-title">${this.t('title.dashboard')}</h1>
-                <p class="text-sm text-slate-400" id="view-subtitle">${this.t('subtitle.dashboard')}</p>
+                <h1 class="text-xl font-semibold" id="view-title">Dashboard</h1>
+                <p class="text-sm text-slate-400" id="view-subtitle">Vue synthétique des opérations</p>
               </div>
               <div class="flex items-center gap-4">
-                <div class="text-sm text-slate-300">${this.t('header.site')}</div>
+                <div class="text-sm text-slate-300">Boutique</div>
                 <select id="site-select" class="bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm">
                   ${SITES.map(site => `<option value="${site}">${site}</option>`).join('')}
                 </select>
-                <div class="text-sm text-slate-300">${this.t('header.role')}</div>
+                <div class="text-sm text-slate-300">Rôle</div>
                 <select id="role-select" class="bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm">
-                  ${ROLES.map(role => `<option value="${role}">${this.t('role.' + role.toLowerCase())}</option>`).join('')}
-                </select>
-                <div id="staff-role-wrapper" class="flex items-center gap-2">
-                  <div class="text-sm text-slate-300">${this.t('header.subrole')}</div>
-                  <select id="staff-role-select" class="bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm">
-                    ${STAFF_ROLES.map(role => `<option value="${role}">${this.t('role.staff.' + role.toLowerCase())}</option>`).join('')}
-                  </select>
-                </div>
-                <div class="text-sm text-slate-300">${this.t('header.language')}</div>
-                <select id="language-select" class="bg-slate-900 border border-slate-700 rounded px-3 py-2 text-sm">
-                  ${LANGUAGES.map(lang => `<option value="${lang}">${this.t('lang.' + lang)}</option>`).join('')}
+                  ${ROLES.map(role => `<option value="${role}">${role}</option>`).join('')}
                 </select>
               </div>
             </header>
@@ -432,10 +235,7 @@
       `;
       document.getElementById('site-select').value = this.data.currentSite;
       document.getElementById('role-select').value = this.data.role;
-      document.getElementById('staff-role-select').value = this.data.staffRole || STAFF_ROLES[0];
-      document.getElementById('language-select').value = this.data.language || 'fr';
       document.getElementById('reset-data').addEventListener('click', () => this.resetData());
-      this.toggleStaffSelector();
     },
 
     registerGlobalEvents() {
@@ -446,18 +246,6 @@
       });
       document.getElementById('role-select').addEventListener('change', (e) => {
         this.data.role = e.target.value;
-        if (this.data.role === 'Staff' && !this.data.staffRole) this.data.staffRole = STAFF_ROLES[0];
-        this.saveData();
-        this.toggleStaffSelector();
-        this.render();
-      });
-      document.getElementById('staff-role-select').addEventListener('change', (e) => {
-        this.data.staffRole = e.target.value;
-        this.saveData();
-        this.render();
-      });
-      document.getElementById('language-select').addEventListener('change', (e) => {
-        this.data.language = e.target.value;
         this.saveData();
         this.render();
       });
@@ -497,17 +285,17 @@
 
     renderSidebar() {
       const views = [
-        { id: 'dashboard', labelKey: 'nav.dashboard', icon: 'layout-dashboard' },
-        { id: 'clients', labelKey: 'nav.clients', icon: 'users' },
-        { id: 'devices', labelKey: 'nav.devices', icon: 'smartphone' },
-        { id: 'suppliers', labelKey: 'nav.suppliers', icon: 'store' },
-        { id: 'catalog', labelKey: 'nav.catalog', icon: 'box' },
-        { id: 'stock', labelKey: 'nav.stock', icon: 'boxes' },
-        { id: 'purchases', labelKey: 'nav.purchases', icon: 'truck' },
-        { id: 'sales', labelKey: 'nav.sales', icon: 'shopping-cart' },
-        { id: 'workorders', labelKey: 'nav.workorders', icon: 'wrench' },
-        { id: 'creances', labelKey: 'nav.creances', icon: 'files' },
-        { id: 'settings', labelKey: 'nav.settings', icon: 'settings' }
+        { id: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard' },
+        { id: 'clients', label: 'Clients', icon: 'users' },
+        { id: 'devices', label: 'Appareils', icon: 'smartphone' },
+        { id: 'suppliers', label: 'Fournisseurs', icon: 'store' },
+        { id: 'catalog', label: 'Articles & Services', icon: 'box' },
+        { id: 'stock', label: 'Stock & Mouvements', icon: 'boxes' },
+        { id: 'purchases', label: 'Achats', icon: 'truck' },
+        { id: 'sales', label: 'Ventes', icon: 'shopping-cart' },
+        { id: 'workorders', label: 'Réparations', icon: 'wrench' },
+        { id: 'creances', label: 'Créances', icon: 'files' },
+        { id: 'settings', label: 'Paramètres', icon: 'settings' }
       ];
       const nav = document.getElementById('sidebar-nav');
       nav.innerHTML = `
@@ -516,7 +304,7 @@
             <li>
               <button data-view="${v.id}" class="sidebar-link w-full flex items-center gap-3 px-3 py-2 rounded text-sm ${this.state.view === v.id ? 'active' : 'text-slate-400'}">
                 <i data-lucide="${v.icon}" class="w-4 h-4"></i>
-                <span>${this.t(v.labelKey)}</span>
+                <span>${v.label}</span>
               </button>
             </li>
           `).join('')}
@@ -535,21 +323,21 @@
     renderView() {
       const viewContainer = document.getElementById('view-container');
       const titleMap = {
-        dashboard: ['title.dashboard', 'subtitle.dashboard'],
-        clients: ['title.clients', 'subtitle.clients'],
-        devices: ['title.devices', 'subtitle.devices'],
-        suppliers: ['title.suppliers', 'subtitle.suppliers'],
-        catalog: ['title.catalog', 'subtitle.catalog'],
-        stock: ['title.stock', 'subtitle.stock'],
-        purchases: ['title.purchases', 'subtitle.purchases'],
-        sales: ['title.sales', 'subtitle.sales'],
-        workorders: ['title.workorders', 'subtitle.workorders'],
-        creances: ['title.creances', 'subtitle.creances'],
-        settings: ['title.settings', 'subtitle.settings']
+        dashboard: ['Dashboard', 'Vue synthétique des opérations'],
+        clients: ['Clients', 'Gestion des clients & appareils'],
+        devices: ['Appareils', 'Suivi des appareils confiés'],
+        suppliers: ['Fournisseurs', 'Achats & dettes fournisseurs'],
+        catalog: ['Articles & Services', 'Catalogue produits et services'],
+        stock: ['Stock & Mouvements', 'Multi-sites & transferts'],
+        purchases: ['Achats', 'Factures fournisseurs'],
+        sales: ['Ventes', 'Point de vente & factures clients'],
+        workorders: ['Réparations', 'Workflow complet des bons de réparation'],
+        creances: ['Créances', 'Suivi des soldes clients & fournisseurs'],
+        settings: ['Paramètres', 'Export / import / diagnostics']
       };
-      const [titleKey, subtitleKey] = titleMap[this.state.view];
-      document.getElementById('view-title').textContent = this.t(titleKey);
-      document.getElementById('view-subtitle').textContent = this.t(subtitleKey);
+      const [title, subtitle] = titleMap[this.state.view];
+      document.getElementById('view-title').textContent = title;
+      document.getElementById('view-subtitle').textContent = subtitle;
 
       const renderer = {
         dashboard: () => this.renderDashboard(),
@@ -628,23 +416,6 @@
       return `${prefix}-${String(seq + 1).padStart(4, '0')}`;
     },
 
-    generateSKU(category) {
-      const normalize = (value) => (value || 'PROD')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toUpperCase()
-        .replace(/[^A-Z0-9]+/g, '_');
-      const prefix = normalize(category).split('_').filter(Boolean)[0] || 'PROD';
-      const existing = this.data.items
-        .filter(item => item.type === 'product' && (item.sku || '').startsWith(`${prefix}-`))
-        .reduce((max, item) => {
-          const match = (item.sku || '').match(/-(\d+)$/);
-          const num = match ? parseInt(match[1], 10) : 0;
-          return num > max ? num : max;
-        }, 0);
-      return `${prefix}-${String(existing + 1).padStart(4, '0')}`;
-    },
-
     nextInvoiceId() {
       const year = DEMO_YEAR;
       const seq = this.data.invoices.reduce((max, inv) => {
@@ -688,8 +459,6 @@
     },
 
     addCreance(creance) {
-      if (!Array.isArray(creance.paiements)) creance.paiements = [];
-      if (!creance.site) creance.site = this.data.currentSite;
       this.data.creances.push(creance);
     },
 
@@ -713,20 +482,17 @@
 
     recordStockMove(move) {
       this.data.stock_moves.push(move);
-      if (move.type === 'Entree' || move.type === 'Stock initial') {
+      if (move.type === 'Entree') {
         const entry = this.ensureInventory(move.item_id, move.site_to || move.site);
-        entry.qty += Number(move.qty || 0);
+        entry.qty += move.qty;
       } else if (move.type === 'Sortie') {
         const entry = this.ensureInventory(move.item_id, move.site_from || move.site);
-        entry.qty -= Number(move.qty || 0);
+        entry.qty -= move.qty;
       } else if (move.type === 'Transfert') {
         const source = this.ensureInventory(move.item_id, move.site_from);
         const target = this.ensureInventory(move.item_id, move.site_to);
         source.qty -= move.qty;
         target.qty += move.qty;
-      } else if (move.type === 'Réajustement') {
-        const entry = this.ensureInventory(move.item_id, move.site);
-        entry.qty += Number(move.qty || 0);
       }
     },
 
@@ -767,7 +533,7 @@
       const invoicesToday = this.data.invoices.filter(inv => inv.created_at && inv.created_at.startsWith(today));
       const revenueToday = invoicesToday.reduce((sum, inv) => sum + (inv.type !== 'interne' ? inv.total : 0), 0);
       const salesToday = invoicesToday.filter(inv => inv.type === 'vente').length;
-      const openWOs = this.data.work_orders.filter(wo => !['livre', 'rejete'].includes(wo.statut)).length;
+      const openWOs = this.data.work_orders.filter(wo => !['livre', 'rejet_livre'].includes(wo.statut)).length;
       const alerts = this.data.inventory.filter(l => l.qty <= l.seuil_reappro);
       const receivables = this.data.creances.filter(c => c.categorie === 'client').reduce((sum, c) => sum + c.reste, 0);
       const topProducts = this.computeTopProducts();
@@ -856,7 +622,7 @@
             <div class="bg-slate-900/70 border border-slate-800 rounded-xl p-6">
               <h2 class="text-lg font-semibold mb-4">Work Orders actifs</h2>
               <div class="space-y-2">
-                ${this.data.work_orders.filter(wo => !['livre', 'rejete'].includes(wo.statut)).slice(0,6).map(wo => {
+                ${this.data.work_orders.filter(wo => !['livre', 'rejet_livre'].includes(wo.statut)).slice(0,6).map(wo => {
                   const client = this.data.clients.find(c => c.id === wo.client_id);
                   const device = this.data.devices.find(d => d.id === wo.device_id);
                   return `<div class="bg-slate-800/40 px-4 py-3 rounded text-sm flex justify-between">
@@ -909,7 +675,7 @@
               </div>
               <span class="text-xs text-slate-500">${rows.length} client(s)</span>
             </div>
-            ${this.canCommercialActions() ? `<button class="btn-primary" data-open="new-client"><i data-lucide="user-plus" class="w-4 h-4"></i> Nouveau client</button>` : ''}
+            ${this.data.role !== 'Technicien' ? `<button class="btn-primary" data-open="new-client"><i data-lucide="user-plus" class="w-4 h-4"></i> Nouveau client</button>` : ''}
           </div>
           <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
             ${rows.map(client => {
@@ -921,7 +687,7 @@
                     <p class="text-sm text-slate-500">${client.id}</p>
                     <h3 class="text-lg font-semibold">${client.nom}</h3>
                   </div>
-                  ${this.canCommercialActions() ? `<button class="text-xs text-indigo-300" data-open-device="${client.id}">+ Appareil</button>` : ''}
+                  ${this.data.role !== 'Technicien' ? `<button class="text-xs text-indigo-300" data-open-device="${client.id}">+ Appareil</button>` : ''}
                 </div>
                 <div class="text-sm space-y-1 text-slate-300">
                   <p><span class="text-slate-400">WhatsApp:</span> ${client.whatsapp || '—'}</p>
@@ -1001,7 +767,7 @@
               <div>
                 <div class="flex items-center justify-between mb-3">
                   <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400">Appareils</h3>
-                  ${this.canCommercialActions() ? `<button class="text-xs text-indigo-300" data-open-device="${client.id}">+ Ajouter</button>` : ''}
+                  ${this.data.role !== 'Technicien' ? `<button class="text-xs text-indigo-300" data-open-device="${client.id}">+ Ajouter</button>` : ''}
                 </div>
                 <div class="space-y-3">
                   ${devices.map(dev => `<div class="bg-slate-900/70 border border-slate-800 rounded-lg p-4 text-sm flex justify-between">
@@ -1090,7 +856,8 @@
       `;
     },
 
-    createClientRecord(formData) {
+    async handleNewClient(form) {
+      const formData = Object.fromEntries(new FormData(form).entries());
       const client = {
         id: this.nextId('CL', this.data.clients),
         nom: formData.nom,
@@ -1101,12 +868,6 @@
         created_at: this.todayISO()
       };
       this.data.clients.push(client);
-      return client;
-    },
-
-    async handleNewClient(form) {
-      const formData = Object.fromEntries(new FormData(form).entries());
-      this.createClientRecord(formData);
       this.saveData();
       this.closeModal();
       this.render();
@@ -1165,7 +926,8 @@
       `;
     },
 
-    async createDeviceRecord(formData) {
+    async handleNewDevice(form) {
+      const formData = Object.fromEntries(new FormData(form).entries());
       const encrypted = formData.code_deverrouillage ? await CryptoHelper.encrypt(formData.code_deverrouillage) : '';
       const device = {
         id: this.nextId('APP', this.data.devices),
@@ -1178,12 +940,6 @@
         created_at: this.todayISO()
       };
       this.data.devices.push(device);
-      return device;
-    },
-
-    async handleNewDevice(form) {
-      const formData = Object.fromEntries(new FormData(form).entries());
-      await this.createDeviceRecord(formData);
       this.saveData();
       this.closeModal();
       this.render();
@@ -1202,7 +958,7 @@
               </div>
               <span class="text-xs text-slate-500">${this.data.devices.length} appareil(s)</span>
             </div>
-            ${this.canCommercialActions() ? `<button class="btn-primary" data-open="new-device"><i data-lucide="smartphone" class="w-4 h-4"></i> Ajouter appareil</button>` : ''}
+            ${this.data.role !== 'Technicien' ? `<button class="btn-primary" data-open="new-device"><i data-lucide="smartphone" class="w-4 h-4"></i> Ajouter appareil</button>` : ''}
           </div>
           <div class="overflow-hidden border border-slate-800 rounded-xl">
             <table class="w-full text-sm">
@@ -1253,7 +1009,7 @@
         <div class="p-8">
           <div class="flex items-center justify-between mb-6">
             <h2 class="text-lg font-semibold">Fournisseurs</h2>
-            ${this.canCommercialActions() ? '<button class="btn-primary" data-open="new-supplier"><i data-lucide="store" class="w-4 h-4"></i> Ajouter fournisseur</button>' : ''}
+            ${this.data.role === 'Technicien' ? '' : '<button class="btn-primary" data-open="new-supplier"><i data-lucide="store" class="w-4 h-4"></i> Ajouter fournisseur</button>'}
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             ${this.data.suppliers.map(s => {
@@ -1387,7 +1143,7 @@
         <div class="p-8 space-y-8">
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">Produits</h2>
-            ${this.canCommercialActions() ? '<button class="btn-primary" data-open="new-product"><i data-lucide="package" class="w-4 h-4"></i> Ajouter produit</button>' : ''}
+            ${this.data.role === 'Technicien' ? '' : '<button class="btn-primary" data-open="new-product"><i data-lucide="package" class="w-4 h-4"></i> Ajouter produit</button>'}
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             ${products.map(prod => `<div class="bg-slate-900/70 border border-slate-800 rounded-xl p-5 space-y-3">
@@ -1409,7 +1165,7 @@
           </div>
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">Services</h2>
-            ${this.canCommercialActions() ? '<button class="btn-primary" data-open="new-service"><i data-lucide="badge-check" class="w-4 h-4"></i> Ajouter service</button>' : ''}
+            ${this.data.role === 'Technicien' ? '' : '<button class="btn-primary" data-open="new-service"><i data-lucide="badge-check" class="w-4 h-4"></i> Ajouter service</button>'}
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             ${services.map(serv => `<div class="bg-slate-900/70 border border-slate-800 rounded-xl p-5 space-y-3">
@@ -1434,18 +1190,7 @@
       document.querySelectorAll('[data-open="new-service"]').forEach(btn => btn.addEventListener('click', () => this.openModal('new-service')));
     },
 
-    bindNewProductModal() {
-      const select = document.getElementById('product-category');
-      const preview = document.getElementById('sku-preview');
-      if (!select || !preview) return;
-      const updatePreview = () => {
-        preview.textContent = this.generateSKU(select.value);
-      };
-      select.addEventListener('change', updatePreview);
-    },
-
     modalProduct() {
-      const previewSKU = this.generateSKU('Pièce');
       return `
         <div class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
           <div class="bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl w-full max-w-2xl">
@@ -1461,7 +1206,7 @@
                 </div>
                 <div>
                   <label class="block mb-1 text-slate-400">Catégorie</label>
-                  <select name="categorie_article" id="product-category" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+                  <select name="categorie_article" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
                     <option value="Pièce">Pièce</option>
                     <option value="Accessoire">Accessoire</option>
                     <option value="Autre">Autre</option>
@@ -1477,13 +1222,20 @@
                   <label class="block mb-1 text-slate-400">Modèle</label>
                   <input name="modele" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
                 </div>
-                <div class="bg-slate-900/40 border border-dashed border-slate-700 rounded px-3 py-2 text-xs text-slate-400 flex flex-col justify-center">
-                  <span>SKU auto : <span id="sku-preview" class="text-indigo-300 font-semibold">${previewSKU}</span></span>
-                  <span>Généré à l'enregistrement.</span>
+                <div>
+                  <label class="block mb-1 text-slate-400">SKU</label>
+                  <input name="sku" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
                 </div>
               </div>
-              <div class="bg-slate-900/40 border border-slate-800 rounded-lg px-4 py-3 text-xs text-slate-400">
-                <p>Les prix d'achat et de vente seront définis via les entrées de stock (stock initial, achats).</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block mb-1 text-slate-400">Prix achat</label>
+                  <input name="prix_achat" type="number" min="0" value="0" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
+                </div>
+                <div>
+                  <label class="block mb-1 text-slate-400">Prix vente</label>
+                  <input name="prix_vente" type="number" min="0" value="0" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
+                </div>
               </div>
               <div>
                 <label class="block mb-1 text-slate-400">Description</label>
@@ -1511,19 +1263,18 @@
 
     async handleNewProduct(form) {
       const formData = Object.fromEntries(new FormData(form).entries());
-      const category = formData.categorie_article;
       const product = {
         item_id: this.nextId('P', this.data.items.filter(i => i.type === 'product')),
         type: 'product',
-        categorie_article: category,
+        categorie_article: formData.categorie_article,
         marque: formData.marque || '',
         modele: formData.modele || '',
         nom: formData.nom,
         description: formData.description || '',
-        prix_achat: 0,
-        prix_vente: 0,
+        prix_achat: Number(formData.prix_achat || 0),
+        prix_vente: Number(formData.prix_vente || 0),
         tva: 0,
-        sku: this.generateSKU(category),
+        sku: formData.sku || '',
         garantie_mois: Number(formData.garantie_mois || 0),
         actif: true,
         date_ajout: this.todayISO().slice(0,10)
@@ -1616,11 +1367,11 @@
         <div class="p-8 space-y-8">
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">État des stocks</h2>
-            ${this.canCommercialActions() ? `
+            ${this.data.role === 'Technicien' ? '' : `
             <div class="flex gap-3">
               <button class="btn-secondary" data-open="new-stock-move"><i data-lucide="plus-circle" class="w-4 h-4"></i> Mouvement</button>
               <button class="btn-primary" data-open="new-transfer"><i data-lucide="arrow-right-left" class="w-4 h-4"></i> Transfert</button>
-            </div>` : ''}
+            </div>`}
           </div>
           <div class="space-y-6">
             ${Object.keys(grouped).sort().map(site => `
@@ -1661,12 +1412,11 @@
                 <tbody class="divide-y divide-slate-800">
                   ${this.data.stock_moves.slice().reverse().map(move => {
                     const item = this.findItem(move.item_id);
-                    const siteInfo = move.site ? move.site : `${move.site_from || '—'} ${move.site_to ? '→ ' + move.site_to : ''}`;
                     return `<tr class="hover:bg-slate-900/40">
                       <td class="px-4 py-3">${move.date?.replace('T',' ') || ''}</td>
                       <td class="px-4 py-3">${move.type}</td>
                       <td class="px-4 py-3">${item?.nom || move.item_id}</td>
-                      <td class="px-4 py-3 text-xs text-slate-400">${siteInfo}</td>
+                      <td class="px-4 py-3 text-xs text-slate-400">${move.site_from || '—'} ${move.site_to ? '→ ' + move.site_to : ''}</td>
                       <td class="px-4 py-3">${move.qty}</td>
                       <td class="px-4 py-3 text-xs text-slate-400">${move.motif || ''}</td>
                     </tr>`;
@@ -1684,99 +1434,43 @@
       document.querySelectorAll('[data-open="new-transfer"]').forEach(btn => btn.addEventListener('click', () => this.openModal('new-transfer')));
     },
 
-    bindStockMoveModal() {
-      const container = document.getElementById('stock-move-lines');
-      const typeSelect = document.getElementById('stock-move-type');
-      const addLineBtn = document.getElementById('add-stock-line');
-      const noteWrapper = document.getElementById('stock-note-wrapper');
-      if (!container || !typeSelect || !addLineBtn) return;
-
-      const buildLine = (mode) => {
-        const div = document.createElement('div');
-        div.dataset.stockLine = mode;
-        if (mode === 'stock_initial') {
-          div.className = 'grid grid-cols-1 md:grid-cols-6 gap-3 bg-slate-900/40 border border-slate-800 rounded-lg px-3 py-3';
-          div.innerHTML = `
-            <select name="item_id" class="md:col-span-2 bg-slate-900 border border-slate-700 rounded px-3 py-2">
-              ${this.data.items.filter(i => i.type === 'product').map(item => `<option value="${item.item_id}">${item.nom}</option>`).join('')}
-            </select>
-            <select name="site" class="bg-slate-900 border border-slate-700 rounded px-3 py-2">
-              ${SITES.map(site => `<option value="${site}" ${site === this.data.currentSite ? 'selected' : ''}>${site}</option>`).join('')}
-            </select>
-            <input name="qty" type="number" min="0" value="0" class="bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Qté" />
-            <input name="pa" type="number" min="0" value="0" class="bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Prix achat" />
-            <input name="pv" type="number" min="0" value="0" class="bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Prix vente" />
-            <button type="button" class="text-xs text-rose-300" data-remove-line>Supprimer</button>
-          `;
-        } else {
-          div.className = 'grid grid-cols-1 md:grid-cols-6 gap-3 bg-slate-900/40 border border-slate-800 rounded-lg px-3 py-3';
-          div.innerHTML = `
-            <select name="item_id" class="md:col-span-2 bg-slate-900 border border-slate-700 rounded px-3 py-2">
-              ${this.data.items.filter(i => i.type === 'product').map(item => `<option value="${item.item_id}">${item.nom}</option>`).join('')}
-            </select>
-            <select name="site" class="bg-slate-900 border border-slate-700 rounded px-3 py-2">
-              ${SITES.map(site => `<option value="${site}" ${site === this.data.currentSite ? 'selected' : ''}>${site}</option>`).join('')}
-            </select>
-            <input name="qty" type="number" value="0" class="bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Qté (+/-)" />
-            <select name="motif" class="bg-slate-900 border border-slate-700 rounded px-3 py-2">
-              <option value="defaillant">Défaillant</option>
-              <option value="manquant">Manquant</option>
-              <option value="autre">Autre</option>
-            </select>
-            <input name="note" class="bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Note" />
-            <button type="button" class="text-xs text-rose-300" data-remove-line>Supprimer</button>
-          `;
-        }
-        container.appendChild(div);
-      };
-
-      const refresh = () => {
-        container.innerHTML = '';
-        const mode = typeSelect.value;
-        noteWrapper?.classList.toggle('hidden', mode !== 'reajustement');
-        buildLine(mode);
-      };
-
-      addLineBtn.addEventListener('click', () => buildLine(typeSelect.value));
-      typeSelect.addEventListener('change', () => refresh());
-      container.addEventListener('click', (e) => {
-        if (e.target.matches('[data-remove-line]')) {
-          e.target.closest('[data-stock-line]')?.remove();
-          if (!container.querySelector('[data-stock-line]')) buildLine(typeSelect.value);
-        }
-      });
-
-      refresh();
-    },
     modalStockMove() {
       return `
         <div class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-          <div class="bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl w-full max-w-3xl">
+          <div class="bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl w-full max-w-xl">
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-800">
               <h2 class="text-lg font-semibold">Mouvement stock</h2>
               <button data-close-modal class="text-slate-400 hover:text-slate-200"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
             <form id="form-stock-move" class="px-6 py-6 space-y-4 text-sm">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div class="md:col-span-1">
-                  <label class="block mb-1 text-slate-400">Type <span class="text-rose-400">*</span></label>
-                  <select name="mode" id="stock-move-type" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
-                    <option value="stock_initial">Stock initial</option>
-                    <option value="reajustement">Réajustement</option>
+              <div>
+                <label class="block mb-1 text-slate-400">Type <span class="text-rose-400">*</span></label>
+                <select name="type" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required>
+                  <option value="Entree">Entrée</option>
+                  <option value="Sortie">Sortie</option>
+                </select>
+              </div>
+              <div>
+                <label class="block mb-1 text-slate-400">Article <span class="text-rose-400">*</span></label>
+                <select name="item_id" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required>
+                  ${this.data.items.filter(i => i.type === 'product').map(item => `<option value="${item.item_id}">${item.nom}</option>`).join('')}
+                </select>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block mb-1 text-slate-400">Site</label>
+                  <select name="site" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+                    ${SITES.map(site => `<option value="${site}" ${site === this.data.currentSite ? 'selected' : ''}>${site}</option>`).join('')}
                   </select>
                 </div>
-                <div class="md:col-span-2 bg-slate-900/40 border border-slate-800 rounded-lg px-4 py-3 text-xs text-slate-400">
-                  <p>Les entrées initiales définissent les prix d'achat/vente. Les réajustements peuvent être positifs ou négatifs et demandent un motif.</p>
+                <div>
+                  <label class="block mb-1 text-slate-400">Quantité</label>
+                  <input name="qty" type="number" min="1" value="1" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
                 </div>
               </div>
               <div>
-                <label class="block mb-1 text-slate-400">Lignes</label>
-                <div id="stock-move-lines" class="space-y-3"></div>
-                <button type="button" id="add-stock-line" class="text-xs text-indigo-300 mt-2">+ Ajouter une ligne</button>
-              </div>
-              <div id="stock-note-wrapper" class="hidden">
-                <label class="block mb-1 text-slate-400">Commentaire global</label>
-                <textarea name="note_generale" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Précisions supplémentaires"></textarea>
+                <label class="block mb-1 text-slate-400">Motif</label>
+                <input name="motif" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
               </div>
               <div class="flex justify-end gap-3 pt-2">
                 <button type="button" data-close-modal class="px-4 py-2 rounded border border-slate-700">Annuler</button>
@@ -1789,69 +1483,24 @@
     },
 
     async handleStockMove(form) {
-      const formData = new FormData(form);
-      const mode = formData.get('mode');
-      const lines = Array.from(form.querySelectorAll('[data-stock-line]'));
-      if (lines.length === 0) { alert('Ajouter au moins une ligne.'); return; }
-      if (mode === 'stock_initial') {
-        let processed = false;
-        lines.forEach(div => {
-          const item_id = div.querySelector('select[name="item_id"]').value;
-          const site = div.querySelector('select[name="site"]').value;
-          const qty = Number(div.querySelector('input[name="qty"]').value || 0);
-          const pa = Number(div.querySelector('input[name="pa"]').value || 0);
-          const pv = Number(div.querySelector('input[name="pv"]').value || 0);
-          if (!item_id || qty <= 0) return;
-          processed = true;
-          const move = {
-            id: this.nextId('SM', this.data.stock_moves),
-            type: 'Stock initial',
-            item_id,
-            site_to: site,
-            qty,
-            motif: 'Stock initial',
-            date: this.todayISO()
-          };
-          this.recordStockMove(move);
-          const item = this.findItem(item_id);
-          if (item) {
-            if (pa > 0) item.prix_achat = pa;
-            if (pv > 0) item.prix_vente = pv;
-          }
-        });
-        if (!processed) { alert('Quantité invalide.'); return; }
-        this.saveData();
-        this.closeModal();
-        this.render();
-        this.showToast('Stock initial enregistré.');
-      } else if (mode === 'reajustement') {
-        const noteGenerale = formData.get('note_generale') || '';
-        let valid = false;
-        lines.forEach(div => {
-          const item_id = div.querySelector('select[name="item_id"]').value;
-          const site = div.querySelector('select[name="site"]').value;
-          const qty = Number(div.querySelector('input[name="qty"]').value || 0);
-          const motif = div.querySelector('select[name="motif"]').value;
-          const note = div.querySelector('input[name="note"]').value || '';
-          if (!item_id || qty === 0) return;
-          valid = true;
-          const move = {
-            id: this.nextId('SM', this.data.stock_moves),
-            type: 'Réajustement',
-            item_id,
-            site,
-            qty,
-            motif: `${motif}${note ? ' - ' + note : ''}${noteGenerale ? ' / ' + noteGenerale : ''}`,
-            date: this.todayISO()
-          };
-          this.recordStockMove(move);
-        });
-        if (!valid) { alert('Renseigner des quantités positives ou négatives.'); return; }
-        this.saveData();
-        this.closeModal();
-        this.render();
-        this.showToast('Réajustement enregistré.');
-      }
+      const formData = Object.fromEntries(new FormData(form).entries());
+      const move = {
+        id: this.nextId('SM', this.data.stock_moves),
+        type: formData.type,
+        item_id: formData.item_id,
+        site: formData.site,
+        site_from: formData.type === 'Sortie' ? formData.site : null,
+        site_to: formData.type === 'Entree' ? formData.site : null,
+        qty: Number(formData.qty || 0),
+        motif: formData.motif || '',
+        date: this.todayISO()
+      };
+      if (move.qty <= 0) return alert('Quantité invalide');
+      this.recordStockMove(move);
+      this.saveData();
+      this.closeModal();
+      this.render();
+      this.showToast('Mouvement enregistré.');
     },
 
     modalTransfer() {
@@ -1947,25 +1596,10 @@
         reference_id: `${formData.site_from}->${formData.site_to}`,
         statut: 'ouvert',
         paiements: [],
-        type: 'client',
-        site: formData.site_from
+        type: 'interne'
       };
       this.addCreance(creanceVendeur);
       invoice.creance_id = creanceVendeur.id;
-      const creanceAcheteur = {
-        id: this.nextId('CR', this.data.creances),
-        categorie: 'interne',
-        libelle: `Dette interne envers ${formData.site_from}`,
-        montant: total,
-        reste: total,
-        echeance: null,
-        reference_id: `${formData.site_to}->${formData.site_from}`,
-        statut: 'ouvert',
-        paiements: [],
-        type: 'fournisseur',
-        site: formData.site_to
-      };
-      this.addCreance(creanceAcheteur);
       this.saveData();
       this.closeModal();
       this.render();
@@ -1978,7 +1612,7 @@
         <div class="p-8 space-y-6">
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">Factures d'achat</h2>
-            ${this.canCommercialActions() ? '<button class="btn-primary" data-open="new-purchase"><i data-lucide="file-plus" class="w-4 h-4"></i> Nouvel achat</button>' : ''}
+            ${this.data.role === 'Technicien' ? '' : '<button class="btn-primary" data-open="new-purchase"><i data-lucide="file-plus" class="w-4 h-4"></i> Nouvel achat</button>'}
           </div>
           <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden">
             <table class="w-full text-sm">
@@ -2006,7 +1640,7 @@
                     <td class="px-4 py-3">${this.formatGNF(pur.reste)}</td>
                     <td class="px-4 py-3"><span class="text-xs px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-200">${pur.statut}</span></td>
                     <td class="px-4 py-3 space-x-2">
-                      ${pur.reste > 0 && this.canCommercialActions() ? `<button class="text-xs text-emerald-300" data-pay-purchase="${pur.id}">Régler</button>` : ''}
+                      ${pur.reste > 0 && this.data.role !== 'Technicien' ? `<button class="text-xs text-emerald-300" data-pay-purchase="${pur.id}">Régler</button>` : ''}
                     </td>
                   </tr>`;
                 }).join('') || '<tr><td colspan="8" class="px-4 py-4 text-center text-sm text-slate-400">Aucun achat.</td></tr>'}
@@ -2166,8 +1800,7 @@
           echeance: purchase.echeance,
           statut: purchase.statut === 'payee' ? 'solde' : (purchase.statut === 'partielle' ? 'partiel' : 'ouvert'),
           paiements: purchase.payes.slice(),
-          type: 'fournisseur',
-          site: purchase.site
+          type: 'fournisseur'
         };
         this.addCreance(creance);
         purchase.creance_id = creance.id;
@@ -2241,7 +1874,7 @@
         <div class="p-8 space-y-6">
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">Factures clients</h2>
-            ${this.canCommercialActions() ? '<button class="btn-primary" data-open="new-sale"><i data-lucide="receipt" class="w-4 h-4"></i> Nouvelle vente</button>' : ''}
+            ${this.data.role === 'Technicien' ? '' : '<button class="btn-primary" data-open="new-sale"><i data-lucide="receipt" class="w-4 h-4"></i> Nouvelle vente</button>'}
           </div>
           <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden">
             <table class="w-full text-sm">
@@ -2269,7 +1902,7 @@
                     <td class="px-4 py-3">${this.formatGNF(inv.reste)}</td>
                     <td class="px-4 py-3"><span class="text-xs px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-200">${inv.statut}</span></td>
                     <td class="px-4 py-3 space-x-2">
-                      ${inv.reste > 0 && this.canCommercialActions() ? `<button class="text-xs text-emerald-300" data-pay-invoice="${inv.id}">Régler</button>` : ''}
+                      ${inv.reste > 0 && this.data.role !== 'Technicien' ? `<button class="text-xs text-emerald-300" data-pay-invoice="${inv.id}">Régler</button>` : ''}
                     </td>
                   </tr>`;
                 }).join('') || '<tr><td colspan="8" class="px-4 py-4 text-center text-sm text-slate-400">Aucune facture.</td></tr>'}
@@ -2327,13 +1960,6 @@
                 <div id="sale-service-lines" class="space-y-3"></div>
                 <button type="button" id="add-sale-service" class="text-xs text-indigo-300 mt-2">+ Service</button>
               </div>
-              <div id="sale-low-price-warning" class="hidden bg-amber-500/10 border border-amber-500/40 text-amber-200 px-4 py-3 rounded-lg text-xs">
-                Prix inférieur au tarif standard détecté. Validation manager requise avec motif détaillé.
-              </div>
-              <div id="sale-motif-wrapper" class="hidden">
-                <label class="block mb-1 text-slate-400">Motif prix inférieur (manager)</label>
-                <textarea name="motif_prix" id="sale-motif-prix" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Justification détaillée"></textarea>
-              </div>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label class="block mb-1 text-slate-400">Montant payé</label>
@@ -2364,59 +1990,9 @@
     bindSaleModal() {
       const productContainer = document.getElementById('sale-product-lines');
       const serviceContainer = document.getElementById('sale-service-lines');
-      const warning = document.getElementById('sale-low-price-warning');
-      const motifWrapper = document.getElementById('sale-motif-wrapper');
-      const motifInput = document.getElementById('sale-motif-prix');
-
-      const evaluatePrices = () => {
-        let hasLow = false;
-        productContainer.querySelectorAll('[data-sale-line="product"]').forEach(div => {
-          const select = div.querySelector('select[name="product_id"]');
-          const priceInput = div.querySelector('input[name="prix"]');
-          if (!select?.value) return;
-          const item = this.findItem(select.value);
-          const base = item?.prix_vente || 0;
-          const current = Number(priceInput.value || 0);
-          if (base > 0 && current > 0 && current < base) hasLow = true;
-        });
-        serviceContainer.querySelectorAll('[data-sale-line="service"]').forEach(div => {
-          const select = div.querySelector('select[name="service_id"]');
-          const priceInput = div.querySelector('input[name="prix"]');
-          if (!select?.value) return;
-          const item = this.findItem(select.value);
-          const base = item?.tarif_service || 0;
-          const current = Number(priceInput.value || 0);
-          if (base > 0 && current > 0 && current < base) hasLow = true;
-        });
-        if (hasLow) {
-          warning?.classList.remove('hidden');
-          motifWrapper?.classList.remove('hidden');
-        } else {
-          warning?.classList.add('hidden');
-          motifWrapper?.classList.add('hidden');
-          if (motifInput) motifInput.value = '';
-        }
-      };
-
-      const attachLineListeners = (div, type) => {
-        const select = div.querySelector(type === 'product' ? 'select[name="product_id"]' : 'select[name="service_id"]');
-        const priceInput = div.querySelector('input[name="prix"]');
-        if (select) {
-          select.addEventListener('change', () => {
-            const item = this.findItem(select.value);
-            if (item && priceInput && (!priceInput.value || Number(priceInput.value) === 0)) {
-              priceInput.value = type === 'product' ? (item.prix_vente || 0) : (item.tarif_service || 0);
-            }
-            evaluatePrices();
-          });
-        }
-        if (priceInput) priceInput.addEventListener('input', () => evaluatePrices());
-      };
-
       const addProduct = () => {
         const div = document.createElement('div');
         div.className = 'grid grid-cols-1 md:grid-cols-4 gap-3';
-        div.dataset.saleLine = 'product';
         div.innerHTML = `
           <select name="product_id" class="bg-slate-900 border border-slate-700 rounded px-3 py-2">
             <option value="">-- Produit --</option>
@@ -2427,14 +2003,10 @@
           <button type="button" class="text-xs text-rose-300" data-remove-line>Supprimer</button>
         `;
         productContainer.appendChild(div);
-        attachLineListeners(div, 'product');
-        evaluatePrices();
       };
-
       const addService = () => {
         const div = document.createElement('div');
         div.className = 'grid grid-cols-1 md:grid-cols-4 gap-3';
-        div.dataset.saleLine = 'service';
         div.innerHTML = `
           <select name="service_id" class="bg-slate-900 border border-slate-700 rounded px-3 py-2">
             <option value="">-- Service --</option>
@@ -2445,26 +2017,11 @@
           <button type="button" class="text-xs text-rose-300" data-remove-line>Supprimer</button>
         `;
         serviceContainer.appendChild(div);
-        attachLineListeners(div, 'service');
-        evaluatePrices();
       };
-
       addProduct();
       document.getElementById('add-sale-product').addEventListener('click', () => addProduct());
       document.getElementById('add-sale-service').addEventListener('click', () => addService());
-      productContainer.addEventListener('click', (e) => {
-        if (e.target.matches('[data-remove-line]')) {
-          e.target.parentElement.remove();
-          evaluatePrices();
-        }
-      });
-      serviceContainer.addEventListener('click', (e) => {
-        if (e.target.matches('[data-remove-line]')) {
-          e.target.parentElement.remove();
-          evaluatePrices();
-        }
-      });
-      evaluatePrices();
+      document.querySelectorAll('[data-remove-line]').forEach(btn => btn.addEventListener('click', () => btn.parentElement.remove()));
     },
 
     async handleNewSale(form) {
@@ -2475,7 +2032,6 @@
         return;
       }
       const lines = [];
-      let hasLowPrice = false;
       document.querySelectorAll('#sale-product-lines > div').forEach(div => {
         const product_id = div.querySelector('select[name="product_id"]').value;
         const qty = Number(div.querySelector('input[name="qty"]').value || 0);
@@ -2483,8 +2039,6 @@
         if (product_id && qty > 0) {
           const item = this.findItem(product_id);
           if (!prix) prix = item?.prix_vente || 0;
-          const base = item?.prix_vente || 0;
-          if (base > 0 && prix < base) hasLowPrice = true;
           lines.push({ type: 'product', item_id: product_id, qty, pu: prix, tva: 0 });
         }
       });
@@ -2495,25 +2049,12 @@
         if (service_id && qty > 0) {
           const item = this.findItem(service_id);
           if (!prix) prix = item?.tarif_service || 0;
-          const base = item?.tarif_service || 0;
-          if (base > 0 && prix < base) hasLowPrice = true;
           lines.push({ type: 'service', item_id: service_id, qty, pu: prix, tva: 0 });
         }
       });
       if (lines.length === 0) {
         alert('Ajouter au moins une ligne.');
         return;
-      }
-      const motifPrix = (formData.get('motif_prix') || '').trim();
-      if (hasLowPrice) {
-        if (!this.isManager()) {
-          alert('Prix inférieur au tarif standard – validation manager requise.');
-          return;
-        }
-        if (!motifPrix) {
-          alert('Motif manager obligatoire pour valider ce prix.');
-          return;
-        }
       }
       const remise = Number(formData.get('remise') || 0);
       const totalBrut = lines.reduce((sum, l) => sum + l.qty * l.pu, 0);
@@ -2530,7 +2071,6 @@
         statut: 'non_payee',
         created_at: this.todayISO()
       };
-      if (hasLowPrice && motifPrix) invoice.motif_prix = motifPrix;
       const montant_paye = Number(formData.get('montant_paye') || 0);
       if (montant_paye > 0) {
         invoice.payes.push({ montant: montant_paye, moyen: formData.get('moyen'), date: this.todayISO() });
@@ -2553,8 +2093,7 @@
           echeance: invoice.echeance,
           statut: invoice.statut === 'payee' ? 'solde' : (invoice.statut === 'partielle' ? 'partiel' : 'ouvert'),
           paiements: invoice.payes.slice(),
-          type: 'client',
-          site: invoice.site
+          type: 'client'
         };
         this.addCreance(creance);
         invoice.creance_id = creance.id;
@@ -2565,7 +2104,6 @@
       this.closeModal();
       this.render();
       this.showToast('Facture enregistrée.');
-      this.openPrintableInvoice(invoice);
     },
 
     modalPayInvoice(id) {
@@ -2621,7 +2159,7 @@
         <div class="p-8 space-y-6">
           <div class="flex justify-between items-center">
             <h2 class="text-lg font-semibold">Bons de réparation</h2>
-            ${this.canCommercialActions() ? '<button class="btn-primary" data-open="new-wo"><i data-lucide="clipboard-plus" class="w-4 h-4"></i> Nouveau dépôt</button>' : ''}
+            ${this.data.role === 'Commercial' || this.data.role === 'Manager' ? '<button class="btn-primary" data-open="new-wo"><i data-lucide="clipboard-plus" class="w-4 h-4"></i> Nouveau dépôt</button>' : ''}
           </div>
           <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden">
             <table class="w-full text-sm">
@@ -2664,22 +2202,19 @@
 
     renderWOActions(wo) {
       const buttons = [];
-      if (this.canTechnicianActions() && wo.statut === 'diagnostic') {
+      if (this.data.role === 'Technicien' && wo.statut === 'diagnostic') {
         buttons.push(`<button class="text-xs text-indigo-300" data-wo-update="${wo.id}">Saisir diagnostic</button>`);
       }
-      if (this.canCommercialActions() && wo.statut === 'attente_confirmation') {
+      if (this.data.role === 'Commercial' && wo.statut === 'en_attente_validation') {
         buttons.push(`<button class="text-xs text-emerald-300" data-wo-update="${wo.id}">Valider / Rejeter</button>`);
       }
-      if (this.canTechnicianActions() && wo.statut === 'en_cours_reparation') {
+      if (this.data.role === 'Technicien' && wo.statut === 'reparation_en_cours') {
         buttons.push(`<button class="text-xs text-indigo-300" data-wo-update="${wo.id}">Terminer réparation</button>`);
       }
-      if (this.canCommercialActions() && wo.statut === 'termine_tech') {
+      if ((this.data.role === 'Commercial' || this.data.role === 'Manager') && wo.statut === 'terminee_attente_test') {
         buttons.push(`<button class="text-xs text-amber-300" data-wo-checklist="${wo.id}">Checklist sortie</button>`);
       }
-      if (this.canCommercialActions() && wo.statut === 'checklist_ok') {
-        buttons.push(`<button class="text-xs text-sky-300" data-wo-ready="${wo.id}">Prêt retrait</button>`);
-      }
-      if (this.canCommercialActions() && wo.statut === 'pret_retrait') {
+      if ((this.data.role === 'Commercial' || this.data.role === 'Manager') && wo.statut === 'pret_retrait') {
         buttons.push(`<button class="text-xs text-emerald-300" data-wo-delivery="${wo.id}">Livrer</button>`);
       }
       return buttons.join(' ');
@@ -2690,76 +2225,6 @@
       document.querySelectorAll('[data-wo-update]').forEach(btn => btn.addEventListener('click', () => this.openModal('update-wo', btn.dataset.woUpdate)));
       document.querySelectorAll('[data-wo-checklist]').forEach(btn => btn.addEventListener('click', () => this.openModal('wo-checklist', btn.dataset.woChecklist)));
       document.querySelectorAll('[data-wo-delivery]').forEach(btn => btn.addEventListener('click', () => this.openModal('wo-delivery', btn.dataset.woDelivery)));
-      document.querySelectorAll('[data-wo-ready]').forEach(btn => btn.addEventListener('click', () => this.markWOReady(btn.dataset.woReady)));
-    },
-
-    bindNewWOModal() {
-      const toggleClient = document.getElementById('wo-toggle-client');
-      const clientSection = document.getElementById('wo-new-client');
-      const clientSelect = document.getElementById('wo-client-select');
-      const createClientBtn = document.getElementById('wo-create-client');
-      if (toggleClient && clientSection) {
-        toggleClient.addEventListener('click', () => clientSection.classList.toggle('hidden'));
-      }
-      if (createClientBtn) {
-        createClientBtn.addEventListener('click', () => {
-          const nom = clientSection.querySelector('input[name="client_nom"]').value.trim();
-          if (!nom) { alert("Nom client requis"); return; }
-          const payload = {
-            nom,
-            whatsapp: clientSection.querySelector('input[name="client_whatsapp"]').value,
-            ville: clientSection.querySelector('input[name="client_ville"]').value,
-            adresse: '',
-            notes: clientSection.querySelector('textarea[name="client_notes"]').value
-          };
-          const client = this.createClientRecord(payload);
-          this.saveData();
-          const option = document.createElement('option');
-          option.value = client.id;
-          option.textContent = client.nom;
-          clientSelect.appendChild(option);
-          clientSelect.value = client.id;
-          clientSection.classList.add('hidden');
-          clientSection.querySelectorAll('input,textarea').forEach(el => el.value = '');
-          this.showToast('Client créé.');
-        });
-      }
-
-      const toggleDevice = document.getElementById('wo-toggle-device');
-      const deviceSection = document.getElementById('wo-new-device');
-      const deviceSelect = document.getElementById('wo-device-select');
-      const createDeviceBtn = document.getElementById('wo-create-device');
-      if (toggleDevice && deviceSection) {
-        toggleDevice.addEventListener('click', () => deviceSection.classList.toggle('hidden'));
-      }
-      if (createDeviceBtn) {
-        createDeviceBtn.addEventListener('click', async () => {
-          if (!clientSelect.value) { alert("Sélectionnez d'abord un client."); return; }
-          const marque = deviceSection.querySelector('input[name="device_marque"]').value.trim();
-          const modele = deviceSection.querySelector('input[name="device_modele"]').value.trim();
-          if (!marque || !modele) { alert('Marque et modèle requis'); return; }
-          const payload = {
-            client_id: clientSelect.value,
-            marque,
-            modele,
-            imei: deviceSection.querySelector('input[name="device_imei"]').value,
-            imei_provisoire: deviceSection.querySelector('input[name="device_imei_provisoire"]').checked ? 'on' : '',
-            code_deverrouillage: deviceSection.querySelector('input[name="device_code"]').value
-          };
-          const device = await this.createDeviceRecord(payload);
-          this.saveData();
-          const option = document.createElement('option');
-          option.value = device.id;
-          option.textContent = `${device.marque} ${device.modele}`;
-          deviceSelect.appendChild(option);
-          deviceSelect.value = device.id;
-          deviceSection.classList.add('hidden');
-          deviceSection.querySelectorAll('input').forEach(el => {
-            if (el.type === 'checkbox') el.checked = false; else el.value = '';
-          });
-          this.showToast('Appareil créé.');
-        });
-      }
     },
 
     modalWorkOrder() {
@@ -2772,61 +2237,32 @@
               <h2 class="text-lg font-semibold">Nouveau dépôt réparation</h2>
               <button data-close-modal class="text-slate-400 hover:text-slate-200"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
-            <form id="form-new-wo" class="px-6 py-6 space-y-5 text-sm">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form id="form-new-wo" class="px-6 py-6 space-y-4 text-sm">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <div class="flex items-center justify-between mb-1">
-                    <label class="text-slate-400">Client</label>
-                    <button type="button" id="wo-toggle-client" class="text-xs text-indigo-300">+ Nouveau client</button>
-                  </div>
-                  <select id="wo-client-select" name="client_id" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required>
+                  <label class="block mb-1 text-slate-400">Client</label>
+                  <select name="client_id" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required>
                     <option value="">-- Sélectionner --</option>
                     ${clientOptions}
                   </select>
-                  <div id="wo-new-client" class="hidden mt-3 space-y-2 bg-slate-900/40 border border-slate-800 rounded-lg px-3 py-3">
-                    <input name="client_nom" placeholder="Nom" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <input name="client_whatsapp" placeholder="WhatsApp" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <input name="client_ville" placeholder="Ville" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <textarea name="client_notes" placeholder="Notes" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2"></textarea>
-                    <button type="button" id="wo-create-client" class="text-xs text-emerald-300">Enregistrer le client</button>
-                  </div>
                 </div>
                 <div>
-                  <div class="flex items-center justify-between mb-1">
-                    <label class="text-slate-400">Appareil</label>
-                    <button type="button" id="wo-toggle-device" class="text-xs text-indigo-300">+ Nouvel appareil</button>
-                  </div>
-                  <select id="wo-device-select" name="device_id" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required>
+                  <label class="block mb-1 text-slate-400">Appareil</label>
+                  <select name="device_id" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" required>
                     <option value="">-- Sélectionner --</option>
                     ${deviceOptions}
                   </select>
-                  <div id="wo-new-device" class="hidden mt-3 space-y-2 bg-slate-900/40 border border-slate-800 rounded-lg px-3 py-3">
-                    <input name="device_marque" placeholder="Marque" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <input name="device_modele" placeholder="Modèle" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <input name="device_imei" placeholder="IMEI (peut être vide)" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <label class="flex items-center gap-2 text-xs text-slate-400"><input type="checkbox" name="device_imei_provisoire" class="bg-slate-900 border-slate-700" /> IMEI provisoire</label>
-                    <input name="device_code" placeholder="Code déverrouillage" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2" />
-                    <button type="button" id="wo-create-device" class="text-xs text-emerald-300">Enregistrer l'appareil</button>
-                  </div>
                 </div>
-              </div>
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label class="block mb-1 text-slate-400">Site</label>
                   <select name="site" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
                     ${SITES.map(site => `<option value="${site}" ${site === this.data.currentSite ? 'selected' : ''}>${site}</option>`).join('')}
                   </select>
                 </div>
-                <div class="md:col-span-2">
-                  <label class="block mb-1 text-slate-400">Symptômes fréquents</label>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    ${SYMPTOM_PRESETS.map(opt => `<label class="flex items-center gap-2 bg-slate-900/50 border border-slate-800 rounded px-3 py-2"><input type="checkbox" name="symptomes_presets" value="${opt.value}" class="bg-slate-900 border-slate-700"> <span>${opt.label}</span></label>`).join('')}
-                  </div>
-                </div>
               </div>
               <div>
-                <label class="block mb-1 text-slate-400">Autres symptômes</label>
-                <textarea name="symptomes_libre" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Notes complémentaires"></textarea>
+                <label class="block mb-1 text-slate-400">Symptômes</label>
+                <textarea name="symptomes" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" placeholder="Liste séparée par des virgules"></textarea>
               </div>
               <div class="flex justify-end gap-3 pt-2">
                 <button type="button" data-close-modal class="px-4 py-2 rounded border border-slate-700">Annuler</button>
@@ -2840,17 +2276,13 @@
 
     async handleNewWO(form) {
       const formData = new FormData(form);
-      const presetValues = Array.from(form.querySelectorAll('input[name="symptomes_presets"]:checked')).map(cb => cb.value);
-      const presetLabels = presetValues.map(val => SYMPTOM_PRESETS.find(p => p.value === val)?.label || val);
-      const libre = (formData.get('symptomes_libre') || '').split(/\n|,/).map(s => s.trim()).filter(Boolean);
-      const symptomes = [...presetLabels, ...libre];
       const wo = {
         id: this.nextWOId(),
         client_id: formData.get('client_id'),
         device_id: formData.get('device_id'),
         site: formData.get('site'),
         technicien: null,
-        symptomes,
+        symptomes: (formData.get('symptomes') || '').split(',').map(s => s.trim()).filter(Boolean),
         diagnostic: { texte: '', cout: 20000, revisions: [] },
         statut: 'diagnostic',
         lignes: [],
@@ -2865,7 +2297,6 @@
         },
         acompte: { montant: 0, moyen: null, date: null },
         reste_a_payer: 0,
-        journal: [],
         dates: { depot: this.todayISO().slice(0,10), diagnostic: null, validation_client: null, debut_rep: null, fin_rep: null, test: null, pret_retrait: null, livraison: null }
       };
       this.data.work_orders.push(wo);
@@ -2878,8 +2309,8 @@
     modalUpdateWO(id) {
       const wo = this.data.work_orders.find(w => w.id === id);
       if (!wo) return '';
-      const isTechnician = this.canTechnicianActions();
-      const isCommercial = this.canCommercialActions();
+      const isTechnician = this.data.role === 'Technicien';
+      const isCommercial = this.data.role === 'Commercial' || this.data.role === 'Manager';
       const device = this.data.devices.find(d => d.id === wo.device_id);
       return `
         <div class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
@@ -2903,7 +2334,7 @@
                   <input name="motif" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2" />
                 </div>
               ` : ''}
-              ${isCommercial && wo.statut === 'attente_confirmation' ? `
+              ${isCommercial && wo.statut === 'en_attente_validation' ? `
                 <div class="space-y-3">
                   <p class="text-sm text-slate-300">Diagnostic: ${wo.diagnostic.texte || ''}</p>
                   <p class="text-sm text-slate-300">Coût: ${this.formatGNF(wo.diagnostic.cout)}</p>
@@ -2922,7 +2353,7 @@
                   </div>
                 </div>
               ` : ''}
-              ${isTechnician && wo.statut === 'en_cours_reparation' ? `
+              ${isTechnician && wo.statut === 'reparation_en_cours' ? `
                 <div>
                   <label class="block mb-1 text-slate-400">Lignes réparation (services & pièces)</label>
                   <div id="wo-lines" class="space-y-3"></div>
@@ -2946,7 +2377,7 @@
     bindWOUpdateModal(id) {
       const wo = this.data.work_orders.find(w => w.id === id);
       if (!wo) return;
-      if (this.canTechnicianActions() && wo.statut === 'en_cours_reparation') {
+      if (this.data.role === 'Technicien' && wo.statut === 'reparation_en_cours') {
         const container = document.getElementById('wo-lines');
         const options = [
           ...this.data.items.filter(i => i.type === 'service').map(item => ({ value: `service|${item.item_id}`, label: `${item.nom} (Service)` })),
@@ -2977,37 +2408,30 @@
       const id = form.dataset.updateWo;
       const wo = this.data.work_orders.find(w => w.id === id);
       if (!wo) return;
-      if (this.canTechnicianActions() && wo.statut === 'diagnostic') {
+      if (this.data.role === 'Technicien' && wo.statut === 'diagnostic') {
         const diagnostic = form.querySelector('textarea[name="diagnostic"]').value;
         const cout = Number(form.querySelector('input[name="cout"]').value || 0);
-        const motif = (form.querySelector('input[name="motif"]').value || '').trim();
-        const previous = wo.diagnostic.texte || '';
-        if (previous && previous !== diagnostic && !motif) {
-          alert('Motif obligatoire pour modifier le diagnostic.');
-          return;
-        }
-        if (previous && previous !== diagnostic) {
-          wo.diagnostic.revisions.push({ date: this.todayISO(), auteur: this.isManager() ? 'Manager' : this.getStaffRole(), motif, ancien_texte: previous });
+        const motif = form.querySelector('input[name="motif"]').value;
+        if (wo.diagnostic.texte && motif) {
+          wo.diagnostic.revisions.push({ date: this.todayISO(), auteur: 'Technicien', motif, ancien_texte: wo.diagnostic.texte });
         }
         wo.diagnostic.texte = diagnostic;
         wo.diagnostic.cout = cout;
-        wo.statut = 'attente_confirmation';
+        wo.statut = 'en_attente_validation';
         wo.dates.diagnostic = this.todayISO().slice(0,10);
-      } else if (this.canCommercialActions() && wo.statut === 'attente_confirmation') {
+      } else if ((this.data.role === 'Commercial' || this.data.role === 'Manager') && wo.statut === 'en_attente_validation') {
         const decision = form.querySelector('input[name="decision"]:checked').value;
         if (decision === 'rejeter') {
           await this.finalizeRejectedWO(wo);
         } else {
           const acompte = Number(form.querySelector('input[name="acompte"]').value || 0);
-          wo.statut = 'en_cours_reparation';
+          wo.statut = 'reparation_en_cours';
           wo.dates.validation_client = this.todayISO().slice(0,10);
-          wo.dates.debut_rep = this.todayISO().slice(0,10);
           if (acompte > 0) {
             wo.acompte = { montant: acompte, moyen: form.querySelector('select[name="moyen"]').value, date: this.todayISO() };
           }
-          wo.reste_a_payer = Math.max(0, wo.diagnostic.cout - (wo.acompte.montant || 0));
         }
-      } else if (this.canTechnicianActions() && wo.statut === 'en_cours_reparation') {
+      } else if (this.data.role === 'Technicien' && wo.statut === 'reparation_en_cours') {
         const lines = [];
         document.querySelectorAll('#wo-lines > div').forEach(div => {
           const key = div.querySelector('select[name="item_key"]').value;
@@ -3021,12 +2445,7 @@
           }
         });
         wo.lignes = lines;
-        const notes = (form.querySelector('textarea[name="notes"]').value || '').trim();
-        if (notes) {
-          const auteur = this.isManager() ? 'Manager' : this.getStaffRole();
-          wo.journal.push({ date: this.todayISO(), auteur, note: notes });
-        }
-        wo.statut = 'termine_tech';
+        wo.statut = 'terminee_attente_test';
         wo.dates.fin_rep = this.todayISO().slice(0,10);
       }
       this.saveData();
@@ -3065,16 +2484,13 @@
         echeance,
         statut: 'ouvert',
         paiements: [],
-        type: 'client',
-        site: wo.site
+        type: 'client'
       };
       this.addCreance(creance);
       invoice.creance_id = creance.id;
       this.data.invoices.push(invoice);
-      wo.statut = 'rejete';
-      wo.reste_a_payer = invoice.reste;
+      wo.statut = 'rejet_livre';
       wo.dates.livraison = this.todayISO().slice(0,10);
-      this.openPrintableInvoice(invoice);
       this.showToast('Réparation rejetée – facture diagnostic créée.', 'warning');
     },
 
@@ -3115,59 +2531,13 @@
         alert('Tous les tests doivent être validés.');
         return;
       }
-      wo.statut = 'checklist_ok';
+      wo.statut = 'pret_retrait';
       wo.dates.test = this.todayISO().slice(0,10);
+      wo.dates.pret_retrait = this.todayISO().slice(0,10);
       this.saveData();
       this.closeModal();
       this.render();
       this.showToast('Checklist validée.');
-    },
-
-    markWOReady(id) {
-      const wo = this.data.work_orders.find(w => w.id === id);
-      if (!wo) return;
-      if (!Object.values(wo.checklist_test).every(Boolean)) {
-        alert('Checklist incomplète.');
-        return;
-      }
-      wo.statut = 'pret_retrait';
-      wo.dates.pret_retrait = this.todayISO().slice(0,10);
-      this.saveData();
-      this.render();
-      this.showToast('WO prêt pour retrait.');
-    },
-
-    openPrintableInvoice(invoice) {
-      if (!invoice) return;
-      try {
-        const client = invoice.client_id ? this.data.clients.find(c => c.id === invoice.client_id) : null;
-        const wo = invoice.wo_id ? this.data.work_orders.find(w => w.id === invoice.wo_id) : null;
-        const lignesHtml = invoice.lignes.map(line => {
-          const item = this.findItem(line.item_id);
-          const label = item ? item.nom || item.categorie_service || item.item_id : line.item_id;
-          return `<tr><td style="padding:4px 8px;border:1px solid #ccc;">${label}</td><td style="padding:4px 8px;border:1px solid #ccc;">${line.qty}</td><td style="padding:4px 8px;border:1px solid #ccc;">${this.formatGNF(line.pu)}</td><td style="padding:4px 8px;border:1px solid #ccc;">${this.formatGNF((line.qty || 1) * line.pu)}</td></tr>`;
-        }).join('');
-        const paymentsHtml = invoice.payes.map(p => `<li>${this.formatGNF(p.montant)} – ${p.moyen} (${p.date?.slice(0,10) || ''})</li>`).join('') || '<li>Aucun paiement enregistré</li>';
-        const win = window.open('', '_blank');
-        if (!win) { this.showToast('Aperçu impression bloqué.', 'warning'); return; }
-        win.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${invoice.id}</title></head><body style="font-family:Arial,sans-serif;padding:24px;">
-          <h1 style="margin-bottom:0;">${invoice.id}</h1>
-          <p style="margin-top:4px;color:#555;">Site : ${invoice.site || this.data.currentSite}</p>
-          ${client ? `<p><strong>Client :</strong> ${client.nom}</p>` : ''}
-          ${wo ? `<p><strong>WO :</strong> ${wo.id}</p>` : ''}
-          <table style="border-collapse:collapse;width:100%;margin-top:16px;">
-            <thead><tr><th style="padding:4px 8px;border:1px solid #ccc;text-align:left;">Ligne</th><th style="padding:4px 8px;border:1px solid #ccc;text-align:left;">Qté</th><th style="padding:4px 8px;border:1px solid #ccc;text-align:left;">PU</th><th style="padding:4px 8px;border:1px solid #ccc;text-align:left;">Montant</th></tr></thead>
-            <tbody>${lignesHtml}</tbody>
-          </table>
-          <h3 style="margin-top:16px;">Paiements</h3>
-          <ul>${paymentsHtml}</ul>
-          <p><strong>Total :</strong> ${this.formatGNF(invoice.total)} – <strong>Reste :</strong> ${this.formatGNF(invoice.reste)}</p>
-        </body></html>`);
-        win.document.close();
-        win.print();
-      } catch (err) {
-        console.error('Print error', err);
-      }
     },
 
     modalWODelivery(id) {
@@ -3212,14 +2582,6 @@
       const id = form.dataset.woDelivery;
       const wo = this.data.work_orders.find(w => w.id === id);
       if (!wo) return;
-      if (wo.statut !== 'pret_retrait') {
-        alert('WO non prêt pour livraison.');
-        return;
-      }
-      if (!Object.values(wo.checklist_test).every(Boolean)) {
-        alert('Checklist non validée.');
-        return;
-      }
       const device = this.data.devices.find(d => d.id === wo.device_id);
       const imei = form.querySelector('input[name="imei"]').value;
       if (!imei) {
@@ -3276,20 +2638,17 @@
           echeance,
           statut: invoice.statut === 'payee' ? 'solde' : (invoice.statut === 'partielle' ? 'partiel' : 'ouvert'),
           paiements: invoice.payes.slice(),
-          type: 'client',
-          site: wo.site
+          type: 'client'
         };
         this.addCreance(creance);
         invoice.creance_id = creance.id;
       }
       this.data.invoices.push(invoice);
       this.decrementStockForInvoice(invoice);
-      wo.reste_a_payer = invoice.reste;
       this.saveData();
       this.closeModal();
       this.render();
       this.showToast('WO livré et facturé.');
-      this.openPrintableInvoice(invoice);
     },
 
     bomForWO(wo) {
@@ -3307,115 +2666,49 @@
 
     /* ------------------------------ CREANCES ------------------------------ */
     renderCreances() {
-      if (!this.state.subState.creanceTab) this.state.subState.creanceTab = 'clients';
-      if (!this.state.subState.creanceSite) this.state.subState.creanceSite = 'all';
-      if (!this.state.subState.creanceStatus) this.state.subState.creanceStatus = 'toutes';
-      const tab = this.state.subState.creanceTab;
-      const siteFilter = this.state.subState.creanceSite;
-      const statusFilter = this.state.subState.creanceStatus;
+      const filter = this.state.subState.creanceFilter || 'toutes';
       const now = new Date();
-      const t = (key) => this.t(key);
-      const statusButtons = [
-        { id: 'toutes', label: t('creances.status.all') },
-        { id: 'soldes', label: t('creances.status.closed') },
-        { id: 'partielle', label: t('creances.status.partial') },
-        { id: 'retard', label: t('creances.status.late') },
-        { id: '10j', label: t('creances.status.soon10') }
-      ];
-      const isClientTab = tab === 'clients';
-      const rows = this.data.creances
-        .filter(creance => {
-          const type = creance.type || 'client';
-          if (tab === 'clients') return type === 'client' || type === 'interne';
-          if (tab === 'fournisseurs') return type === 'fournisseur';
-          return true;
-        })
-        .filter(creance => {
-          if (siteFilter !== 'all') return (creance.site || this.data.currentSite) === siteFilter;
-          return true;
-        })
-        .filter(creance => {
-          const reste = Number(creance.reste || 0);
-          const echeance = creance.echeance ? new Date(creance.echeance) : null;
-          const diff = echeance ? (echeance - now) / (1000 * 60 * 60 * 24) : null;
-          switch (statusFilter) {
-            case 'soldes':
-              return reste === 0;
-            case 'partielle':
-              return reste > 0 && (creance.statut === 'partiel' || (creance.paiements || []).length > 0);
-            case 'retard':
-              return reste > 0 && echeance && echeance < now;
-            case '10j':
-              return reste > 0 && diff !== null && diff >= 0 && diff <= 10;
-            default:
-              return true;
-          }
-        })
-        .sort((a, b) => Number(b.reste || 0) - Number(a.reste || 0));
-      const totalReste = rows.reduce((sum, c) => sum + Number(c.reste || 0), 0);
+      const rows = this.data.creances.filter(c => {
+        if (filter === 'retard') return c.reste > 0 && c.echeance && new Date(c.echeance) < now;
+        if (filter === '10j') {
+          if (!c.echeance) return false;
+          const diff = (new Date(c.echeance) - now) / (1000*60*60*24);
+          return diff >= 0 && diff <= 10;
+        }
+        return true;
+      }).sort((a,b) => b.reste - a.reste);
       return `
         <div class="p-8 space-y-6">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <div class="inline-flex bg-slate-900/80 border border-slate-800 rounded-lg overflow-hidden">
-              <button data-creance-tab="clients" class="px-4 py-2 text-sm ${isClientTab ? 'bg-indigo-500/20 text-indigo-200' : 'text-slate-300'}">${t('creances.tab.clients')}</button>
-              <button data-creance-tab="fournisseurs" class="px-4 py-2 text-sm ${!isClientTab ? 'bg-indigo-500/20 text-indigo-200' : 'text-slate-300'}">${t('creances.tab.suppliers')}</button>
+          <div class="flex items-center justify-between">
+            <div class="flex gap-2 text-sm">
+              <button data-creance-filter="toutes" class="px-3 py-1 rounded ${filter === 'toutes' ? 'bg-indigo-500/20 text-indigo-200' : 'bg-slate-900 text-slate-400'}">Toutes</button>
+              <button data-creance-filter="retard" class="px-3 py-1 rounded ${filter === 'retard' ? 'bg-indigo-500/20 text-indigo-200' : 'bg-slate-900 text-slate-400'}">En retard</button>
+              <button data-creance-filter="10j" class="px-3 py-1 rounded ${filter === '10j' ? 'bg-indigo-500/20 text-indigo-200' : 'bg-slate-900 text-slate-400'}">Échéance ≤ 10 jours</button>
             </div>
-            <div class="flex flex-wrap items-center gap-3 text-sm">
-              <label class="flex items-center gap-2">
-                <span>${t('creances.filter.site')}</span>
-                <select data-creance-site class="bg-slate-900 border border-slate-700 rounded px-3 py-2">
-                  <option value="all" ${siteFilter === 'all' ? 'selected' : ''}>${t('creances.status.all')}</option>
-                  ${SITES.map(site => `<option value="${site}" ${siteFilter === site ? 'selected' : ''}>${site}</option>`).join('')}
-                </select>
-              </label>
-              <div class="inline-flex bg-slate-900/80 border border-slate-800 rounded-lg overflow-hidden">
-                ${statusButtons.map(btn => `<button data-creance-status="${btn.id}" class="px-3 py-2 ${statusFilter === btn.id ? 'bg-emerald-500/10 text-emerald-200' : 'text-slate-300'}">${btn.label}</button>`).join('')}
-              </div>
-            </div>
-          </div>
-          <div class="bg-slate-900/70 border border-slate-800 rounded-xl px-4 py-3 text-sm text-slate-300 flex items-center justify-between">
-            <span>${rows.length} ${isClientTab ? t('creances.summary.clients') : t('creances.summary.suppliers')}</span>
-            <span>${t('creances.summary.total')} : <strong class="text-indigo-200">${this.formatGNF(totalReste)}</strong></span>
           </div>
           <div class="bg-slate-900/60 border border-slate-800 rounded-xl overflow-hidden">
             <table class="w-full text-sm">
               <thead class="bg-slate-900/70 text-xs text-slate-400 uppercase">
                 <tr>
-                  <th class="px-4 py-3 text-left">${t('creances.table.libelle')}</th>
-                  <th class="px-4 py-3 text-left">${t('creances.table.site')}</th>
-                  <th class="px-4 py-3 text-left">${t('creances.table.montant')}</th>
-                  <th class="px-4 py-3 text-left">${t('creances.table.reste')}</th>
-                  <th class="px-4 py-3 text-left">${t('creances.table.echeance')}</th>
-                  <th class="px-4 py-3 text-left">${t('creances.table.statut')}</th>
-                  <th class="px-4 py-3 text-left">${t('creances.table.actions')}</th>
+                  <th class="px-4 py-3 text-left">Libellé</th>
+                  <th class="px-4 py-3 text-left">Catégorie</th>
+                  <th class="px-4 py-3 text-left">Montant</th>
+                  <th class="px-4 py-3 text-left">Reste</th>
+                  <th class="px-4 py-3 text-left">Échéance</th>
+                  <th class="px-4 py-3 text-left">Statut</th>
+                  <th class="px-4 py-3 text-left">Actions</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-800">
-                ${rows.map(creance => {
-                  const reste = Number(creance.reste || 0);
-                  const echeance = creance.echeance ? new Date(creance.echeance) : null;
-                  const isLate = reste > 0 && echeance && echeance < now;
-                  const diff = echeance ? (echeance - now) / (1000 * 60 * 60 * 24) : null;
-                  const isSoon = reste > 0 && diff !== null && diff >= 0 && diff <= 10;
-                  let label = t('creances.badge.open');
-                  let cls = 'bg-indigo-500/20 text-indigo-200';
-                  if (reste === 0) { label = t('creances.badge.closed'); cls = 'bg-emerald-500/20 text-emerald-200'; }
-                  else if (isLate) { label = t('creances.badge.late'); cls = 'bg-rose-500/20 text-rose-200'; }
-                  else if (isSoon) { label = t('creances.badge.soon'); cls = 'bg-amber-500/20 text-amber-200'; }
-                  else if (creance.statut === 'partiel') { label = t('creances.badge.partial'); cls = 'bg-amber-500/20 text-amber-200'; }
-                  return `<tr class="hover:bg-slate-900/40">
-                    <td class="px-4 py-3">
-                      <p class="font-medium text-slate-100">${creance.libelle}</p>
-                      <p class="text-xs text-slate-400">${creance.categorie || creance.type || ''}</p>
-                    </td>
-                    <td class="px-4 py-3">${creance.site || '—'}</td>
-                    <td class="px-4 py-3">${this.formatGNF(creance.montant)}</td>
-                    <td class="px-4 py-3">${this.formatGNF(reste)}</td>
-                    <td class="px-4 py-3">${creance.echeance || '—'}</td>
-                    <td class="px-4 py-3"><span class="text-xs px-3 py-1 rounded-full ${cls}">${label}</span></td>
-                    <td class="px-4 py-3">${reste > 0 ? `<button class="text-xs text-emerald-300" data-pay-creance="${creance.id}">${t('creances.action.pay')}</button>` : ''}</td>
-                  </tr>`;
-                }).join('') || `<tr><td colspan="7" class="px-4 py-4 text-center text-sm text-slate-400">${t('creances.empty')}</td></tr>`}
+                ${rows.map(creance => `<tr class="hover:bg-slate-900/40">
+                  <td class="px-4 py-3">${creance.libelle}</td>
+                  <td class="px-4 py-3">${creance.categorie}</td>
+                  <td class="px-4 py-3">${this.formatGNF(creance.montant)}</td>
+                  <td class="px-4 py-3">${this.formatGNF(creance.reste)}</td>
+                  <td class="px-4 py-3">${creance.echeance || '—'}</td>
+                  <td class="px-4 py-3"><span class="text-xs px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-200">${creance.statut}</span></td>
+                  <td class="px-4 py-3">${creance.reste > 0 ? `<button class="text-xs text-emerald-300" data-pay-creance="${creance.id}">Régler</button>` : ''}</td>
+                </tr>`).join('') || '<tr><td colspan="7" class="px-4 py-4 text-center text-sm text-slate-400">Aucune créance.</td></tr>'}
               </tbody>
             </table>
           </div>
@@ -3424,19 +2717,8 @@
     },
 
     bindCreanceEvents() {
-      document.querySelectorAll('[data-creance-tab]').forEach(btn => btn.addEventListener('click', () => {
-        this.state.subState.creanceTab = btn.dataset.creanceTab;
-        this.render();
-      }));
-      const siteSelect = document.querySelector('[data-creance-site]');
-      if (siteSelect) {
-        siteSelect.addEventListener('change', (e) => {
-          this.state.subState.creanceSite = e.target.value;
-          this.render();
-        });
-      }
-      document.querySelectorAll('[data-creance-status]').forEach(btn => btn.addEventListener('click', () => {
-        this.state.subState.creanceStatus = btn.dataset.creanceStatus;
+      document.querySelectorAll('[data-creance-filter]').forEach(btn => btn.addEventListener('click', () => {
+        this.state.subState.creanceFilter = btn.dataset.creanceFilter;
         this.render();
       }));
       document.querySelectorAll('[data-pay-creance]').forEach(btn => btn.addEventListener('click', () => this.openModal('pay-creance', btn.dataset.payCreance)));
@@ -3479,23 +2761,13 @@
       const id = form.dataset.payCreance;
       const creance = this.data.creances.find(c => c.id === id);
       if (!creance) return;
-      const formData = new FormData(form);
-      const montant = Number(formData.get('montant') || 0);
+      const montant = Number(new FormData(form).get('montant') || 0);
       if (montant <= 0) return alert('Montant invalide');
-      const paiement = { montant, moyen: formData.get('moyen'), date: this.todayISO() };
-      creance.paiements.push(paiement);
+      creance.paiements.push({ montant, moyen: new FormData(form).get('moyen'), date: this.todayISO() });
       this.updateCreanceBalance(creance.id);
-      const invoice = this.data.invoices.find(inv => inv.creance_id === creance.id);
-      if (invoice) this.registerInvoicePayment(invoice, paiement);
-      const purchase = this.data.purchases.find(p => p.creance_id === creance.id);
-      if (purchase) {
-        purchase.payes.push(paiement);
-        purchase.reste = Math.max(0, purchase.reste - montant);
-        purchase.statut = purchase.reste === 0 ? 'payee' : (purchase.reste < purchase.total ? 'partielle' : 'non_payee');
-        if (purchase.reste <= 0) {
-          purchase.reste = 0;
-          purchase.echeance = null;
-        }
+      if (creance.reference_id) {
+        const invoice = this.data.invoices.find(inv => inv.creance_id === creance.id);
+        if (invoice) this.registerInvoicePayment(invoice, { montant, moyen: new FormData(form).get('moyen'), date: this.todayISO() });
       }
       this.saveData();
       this.closeModal();
@@ -3587,15 +2859,9 @@
       if (form.id === 'form-new-client') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewClient(e.target); });
       if (form.id === 'form-new-device') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewDevice(e.target); });
       if (form.id === 'form-new-supplier') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewSupplier(e.target); });
-      if (form.id === 'form-new-product') {
-        this.bindNewProductModal();
-        form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewProduct(e.target); });
-      }
+      if (form.id === 'form-new-product') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewProduct(e.target); });
       if (form.id === 'form-new-service') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewService(e.target); });
-      if (form.id === 'form-stock-move') {
-        this.bindStockMoveModal();
-        form.addEventListener('submit', (e) => { e.preventDefault(); this.handleStockMove(e.target); });
-      }
+      if (form.id === 'form-stock-move') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleStockMove(e.target); });
       if (form.id === 'form-transfer') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleTransfer(e.target); });
       if (form.id === 'form-new-purchase') {
         this.bindPurchaseModal();
@@ -3607,10 +2873,7 @@
         form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewSale(e.target); });
       }
       if (form.dataset?.payInvoice) form.addEventListener('submit', (e) => { e.preventDefault(); this.handlePayInvoice(e.target); });
-      if (form.id === 'form-new-wo') {
-        this.bindNewWOModal();
-        form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewWO(e.target); });
-      }
+      if (form.id === 'form-new-wo') form.addEventListener('submit', (e) => { e.preventDefault(); this.handleNewWO(e.target); });
       if (form.dataset?.updateWo) {
         this.bindWOUpdateModal(form.dataset.updateWo);
         form.addEventListener('submit', (e) => { e.preventDefault(); this.handleUpdateWO(e.target); });
