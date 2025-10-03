@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kada Gestion - v3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .sidebar-link { transition: all 0.2s ease-in-out; }
+        .sidebar-link:hover, .sidebar-link.active { background-color: #374151; color: #ffffff; }
+        .table-header { background-color: #374151; }
+        .modal-backdrop { background-color: rgba(0, 0, 0, 0.75); }
+        .required-label::after { content: ' *'; color: #f87171; }
+        .tab-button { transition: all 0.2s ease-in-out; border-bottom: 2px solid transparent; }
+        .tab-button.active { border-color: #6366f1; color: #e5e7eb; }
+        .tab-button:not(.active) { color: #9ca3af; }
+        .timeline-item::before { content: ''; position: absolute; left: 11px; top: 1rem; bottom: -1rem; width: 2px; background-color: #4b5563; }
+        .timeline-item:last-child::before { display: none; }
+        .timeline-dot { position: absolute; left: 0; top: 0.8rem; width: 1.5rem; height: 1.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; background-color: #374151; }
+        [x-cloak] { display: none !important; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+    <div id="app">
+        <div class="flex h-screen items-center justify-center">
+            <div class="text-center">
+                <p>Chargement de l'application Kada Gestion...</p>
+                 <div class="mt-4 h-8 w-8 animate-spin rounded-full border-4 border-solid border-indigo-500 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // --- CONTEXTE MÉTIER ---
+    // Kada Technologie: Vente, services, réparations smartphones.
+    // L'app est un simulateur local (frontend-only) pour imiter les flux réels.
+    // Vocabulaire: Boutique/Site, Ardoise (solde client), WO (Work Order), Entrée/Sortie/Transfert, Acompte/Solde.
+    // Règles: TVA ignorée, stock décrémenté à la facturation, IMEI peut être temporaire.
+    // --- FIN CONTEXTE ---
+    
+    // --- SEED DATA ---
+    const initialData = {
+        meta: { name: "Kada Gestion - Seed v3", version: "3.0.0" },
+        shops: [{id: 'B-0001', nom: 'Kada Lambanyi', adresse: 'Lambanyi, Conakry', phone: '+224 620000001'}],
+        clients: [{
+            id: 'C-0001', nom: 'Kourouma Diara', whatsapp: '+224 624936561', phone: '', notes: 'Client fidèle',
+            ardoise: { solde: 1500000, mouvements: [
+                {type: 'reparation', ref: 'WO-0001', dateISO: '2025-09-30T10:00:00Z', debit: 1500000, credit: 0, commentaire: 'Remplacement écran iPhone 13'}
+            ]},
+            appareils: [{id: 'A-0001', client_id: 'C-0001', marque: 'Apple', modele: 'iPhone 13', imei: '356789012345678', code_deverrouillage: '1234'}]
+        }],
+        fournisseurs: [{id: 'F-0001', nom: 'Global Parts CN', whatsapp: '+86 13800138000', ardoise: {solde: 0, mouvements:[]}}],
+        achats: [],
+        items: [
+            // ... (données initiales des articles et services)
+             {"item_id": "P-0001", "type": "product", "categorie_article": "Pièce", "marque": "Apple", "modele": "iPhone 13", "nom": "Écran OLED iPhone 13", "description": "Écran qualité OEM/Origine", "prix_achat": 950000, "prix_vente": 1250000, "tva": 0, "sku": "SCR-IP13-OLED", "suivi_stock": true, "actif": true},
+             {"item_id": "P-0002", "type": "product", "categorie_article": "Pièce", "marque": "Apple", "modele": "iPhone 13", "nom": "Batterie iPhone 13", "prix_achat": 380000, "prix_vente": 550000, "tva": 0, "sku": "BAT-IP13-STD", "suivi_stock": true, "actif": true},
+             {"item_id": "S-0001", "type": "service", "categorie_service": "Réparation", "nom": "Remplacement écran iPhone 13", "description": "Main-d’œuvre (hors pièces)", "tarif_service": 250000, "tva": 0, "suivi_stock": false, "actif": true},
+             {"item_id": 'DIAG-001', type: 'service', categorie_service: 'Réparation', nom: 'Frais de diagnostic', tarif_service: 20000, tva: 0, suivi_stock: false, actif: true}
+        ],
+        inventory: [
+            {item_id: 'P-0001', site: 'Kada Lambanyi', qty: 5, seuil_reappro: 2},
+            {item_id: 'P-0002', site: 'Kada Lambanyi', qty: 8, seuil_reappro: 3},
+        ],
+        stock_moves: [],
+        sales: [],
+        work_orders: [{
+            wo_id: 'WO-0001', client_id: 'C-0001', appareil_id: 'A-0001', site: 'Kada Lambanyi', 
+            statut_global: 'terminé', technicien: 'Alpha', date_ouverture: '2025-09-30T09:00:00Z',
+            diagnostic: {
+                symptomes_check: {ecran: 'fissuré', charge: 'ok'}, commentaire: 'Chute, écran cassé', cout_fixe: 20000,
+                statut: 'pret_reparation', confirmado: true, modifs: []
+            },
+            reparation: {
+                etapes: [{note: 'Écran démonté', dateISO: '2025-09-30T11:00:00Z'}],
+                pieces_utilisees: [{item_id: 'P-0001', qty: 1}],
+                tests_sortie: {ecran: 'ok', charge: 'ok', batterie: 'ok', haut_parleur: 'ok', boutons: 'ok', face_id: 'ok', micro: 'ok'},
+            },
+            facturation: {
+                lignes: [
+                    {item_id: 'S-0001', type: 'service', qty: 1, pu: 250000},
+                    {item_id: 'P-0001', type: 'product', qty: 1, pu: 1250000}
+                ],
+                total: 1500000,
+                paiements: [],
+                statut: 'crédit'
+            }
+        }],
+        lists: {
+            categories_articles: ["Appareil", "Pièce", "Accessoire", "Autre", "Famille Troc"],
+            categories_services: ["Réparation", "Logiciel", "Autres services"],
+            tests_reparation: ['ecran', 'charge', 'batterie', 'haut_parleur', 'boutons', 'face_id', 'micro', 'camera_avant', 'camera_arriere', 'wifi', 'reseau']
+        }
+    };
+    const KADA_APP_STORAGE_KEY = 'kadaAppData_v3';
+
+    // --- APPLICATION LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const KadaApp = {
+            data: null,
+            state: {
+                currentView: 'dashboard',
+                activeSubView: null,
+                activeId: null, // ex: client_id, wo_id
+                searchTerm: '',
+                modal: { type: null, data: {} },
+                notification: null,
+                passwordVisible: {}
+            },
+            
+            // --- CORE METHODS ---
+            init() {
+                this.loadData();
+                this.render();
+                this.attachEventListeners();
+                lucide.createIcons();
+                console.log("Kada App Initialized. Data:", this.data);
+            },
+
+            loadData() {
+                const savedData = localStorage.getItem(KADA_APP_STORAGE_KEY);
+                try {
+                    if (savedData) {
+                        this.data = JSON.parse(savedData);
+                        // Assurer la compatibilité ascendante des modèles de données
+                        if (!this.data.fournisseurs) this.data.fournisseurs = [];
+                        if (!this.data.achats) this.data.achats = [];
+                    } else {
+                        this.data = JSON.parse(JSON.stringify(initialData));
+                    }
+                } catch (e) {
+                    console.error("Failed to parse data from localStorage, resetting to initial data.", e);
+                    this.data = JSON.parse(JSON.stringify(initialData));
+                }
+            },
+
+            saveDataAndRender() {
+                // TODO Sheets: C'est ici qu'on enverrait les données au backend
+                localStorage.setItem(KADA_APP_STORAGE_KEY, JSON.stringify(this.data));
+                this.render();
+            },
+            
+            resetData() {
+                if(confirm("Êtes-vous sûr de vouloir réinitialiser toutes les données ? Cette action est irréversible.")) {
+                    localStorage.removeItem(KADA_APP_STORAGE_KEY);
+                    this.loadData();
+                    this.navigate('dashboard');
+                    this.showNotification("Données réinitialisées avec succès.", "warning");
+                }
+            },
+
+            showNotification(message, type = 'success') {
+                this.state.notification = { message, type, id: Date.now() };
+                this.renderNotification();
+                setTimeout(() => {
+                    this.state.notification = null;
+                    this.renderNotification();
+                }, 4000);
+            },
+            
+            // --- HELPERS ---
+            generateNewId(prefix) {
+                let collection;
+                switch(prefix) {
+                    case 'C': collection = this.data.clients; break;
+                    case 'A': collection = this.data.clients.flatMap(c => c.appareils); break;
+                    case 'WO': collection = this.data.work_orders; break;
+                    case 'S': collection = this.data.sales; break;
+                    case 'M': collection = this.data.stock_moves; break;
+                    case 'F': collection = this.data.fournisseurs; break;
+                    case 'ACH': collection = this.data.achats; break;
+                    default: return `${prefix}-ERR-0001`;
+                }
+                const maxId = collection.reduce((max, item) => {
+                    const num = parseInt(item.id.split('-')[1] || item.wo_id.split('-')[1], 10);
+                    return num > max ? num : max;
+                }, 0);
+                return `${prefix}-${String(maxId + 1).padStart(4, '0')}`;
+            },
+
+            formatMoney(amount) {
+                return new Intl.NumberFormat('fr-FR').format(amount || 0) + ' GNF';
+            },
+
+            formatDate(isoString) {
+                if (!isoString) return 'N/A';
+                return new Date(isoString).toLocaleString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            },
+
+            todayISO() {
+                return new Date().toISOString();
+            },
+
+            // --- RENDER METHODS ---
+            render() {
+                 const appContainer = document.getElementById('app');
+                 // Le reste du rendu est géré par les méthodes spécifiques pour ne pas tout redessiner à chaque fois.
+                 // Cette méthode principale met en place la structure de base.
+                 appContainer.innerHTML = `
+                    <div class="flex h-screen bg-gray-900 text-gray-200">
+                        ${this.renderSidebar()}
+                        <main class="flex-1 flex flex-col p-4 md:p-6 overflow-hidden">
+                            <div id="page-content" class="flex-1 overflow-y-auto">
+                                ${this.renderContent()}
+                            </div>
+                        </main>
+                    </div>
+                    <div id="modal-container"></div>
+                    <div id="notification-container" class="fixed bottom-5 right-5 z-50 space-y-2"></div>
+                 `;
+                 lucide.createIcons();
+                 this.attachDynamicEventListeners();
+            },
+
+            renderSidebar() {
+                const links = [
+                    { id: 'dashboard', label: 'Tableau de bord', icon: 'layout-dashboard' },
+                    { id: 'sales', label: 'Ventes', icon: 'shopping-cart' },
+                    { id: 'work_orders', label: 'Réparations', icon: 'wrench' },
+                    { id: 'clients', label: 'Clients', icon: 'users' },
+                    { id: 'stock', label: 'Stock', icon: 'warehouse' },
+                    { id: 'purchases', label: 'Achats', icon: 'truck' },
+                    { id: 'suppliers', label: 'Fournisseurs', icon: 'building' },
+                    { id: 'catalog', label: 'Catalogue', icon: 'book-open' }
+                ];
+                // ...
+                return ``;
+            },
+            
+            renderContent() {
+                // ...
+                return ``;
+            },
+            
+            renderNotification() {
+                const container = document.getElementById('notification-container');
+                if (!this.state.notification) {
+                    if (container) container.innerHTML = '';
+                    return;
+                }
+                
+                const colors = { success: 'bg-green-600', error: 'bg-red-600', warning: 'bg-yellow-600' };
+                const notifHTML = `
+                    <div id="notif-${this.state.notification.id}" class="max-w-sm rounded-lg shadow-lg text-white p-4 ${colors[this.state.notification.type]}">
+                        ${this.state.notification.message}
+                    </div>`;
+                if(container) container.innerHTML = notifHTML;
+            },
+
+            // --- NAVIGATION ---
+            navigate(view, id = null, subView = null) {
+                this.state.currentView = view;
+                this.state.activeId = id;
+                this.state.activeSubView = subView;
+                this.state.searchTerm = '';
+                
+                document.getElementById('page-content').innerHTML = this.renderContent();
+                // Mettre à jour la classe active dans la sidebar
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                const activeLink = document.querySelector(`.sidebar-link[onclick*="navigate('${view}')"]`);
+                if(activeLink) activeLink.classList.add('active');
+
+                lucide.createIcons();
+                this.attachDynamicEventListeners();
+            },
+
+            // ... Autres méthodes de rendu (dashboard, clients, ventes, etc.)
+            
+            // --- MUTATIONS (Exemples) ---
+            addClient(formData) {
+                const newClient = {
+                    id: this.generateNewId('C'),
+                    nom: formData.get('nom'),
+                    whatsapp: formData.get('whatsapp'),
+                    phone: formData.get('phone'),
+                    notes: formData.get('notes'),
+                    ardoise: { solde: 0, mouvements: [] },
+                    appareils: []
+                };
+                this.data.clients.push(newClient);
+                this.showNotification(`Client "${newClient.nom}" créé avec succès.`);
+                this.closeModal();
+                this.navigate('clients', newClient.id); // Aller directement à la fiche client
+                this.saveDataAndRender(); // Seul point de sauvegarde et de rendu
+            },
+            
+            addSale(formData) {
+                //... logique complexe de création de vente
+                // 1. Créer l'objet `sale`
+                // 2. Pour chaque ligne produit:
+                //    a. Appeler `this.executeStockMove(...)` pour décrémenter le stock
+                // 3. Appeler `this.pushLedger(...)` pour mettre à jour l'ardoise client
+                // 4. this.saveDataAndRender();
+            },
+            
+            executeStockMove(moveData) {
+                // Logique pour Entrée, Sortie, Transfert
+                // 1. Valider le mouvement (ex: stock suffisant pour une sortie)
+                // 2. Mettre à jour `this.data.inventory`
+                // 3. Ajouter une entrée dans `this.data.stock_moves`
+                // (Ne pas appeler saveDataAndRender ici, la fonction appelante le fera)
+            },
+            
+            pushLedger(clientId, movementData) {
+                 // 1. Trouver le client
+                 // 2. Ajouter le mouvement à `client.ardoise.mouvements`
+                 // 3. Recalculer `client.ardoise.solde`
+            },
+
+
+            // --- EVENT HANDLING ---
+            attachEventListeners() {
+                document.body.addEventListener('submit', (e) => {
+                    const formId = e.target.id;
+                    if (formId) {
+                        e.preventDefault();
+                        const formData = new FormData(e.target);
+                        
+                        // Dispatch en fonction de l'ID du formulaire
+                        const handler = this.formHandlers[formId];
+                        if (handler) {
+                            handler.bind(this)(formData);
+                        } else {
+                            console.warn(`No handler found for form with id: ${formId}`);
+                        }
+                    }
+                });
+            },
+            
+            attachDynamicEventListeners() {
+                // ...
+            },
+            
+            formHandlers: {
+                'new-client-form': function(formData) { this.addClient(formData); },
+                'new-sale-form': function(formData) { this.addSale(formData); },
+                // ... autres formulaires
+            },
+
+        };
+
+        window.KadaApp = KadaApp;
+        KadaApp.init();
+    });
+    </script>
+</body>
+</html>
